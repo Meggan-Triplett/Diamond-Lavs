@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Megga-Miister/Diamond-Lavs/issues"
   },
-  "homepage": "https://github.com/Megga-Miister/Diamond-Lavs#readme"
+  "homepage": "https://github.com/Megga-Miister/Diamond-Lavs#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }

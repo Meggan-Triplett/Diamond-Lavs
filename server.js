@@ -6,6 +6,7 @@ const ejs = require ('ejs');
 const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
+const cors = require('cors');
 
 const app = express();
 
@@ -27,7 +28,6 @@ app.use(methodOverride((request, response) => {
 // add client routes here
 
 // add client-facing function calls here
-
 
 
 // add route for DB refresh here
