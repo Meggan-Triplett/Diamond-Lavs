@@ -1,0 +1,21 @@
+{
+  "name": "Diamond-Lavs",
+  "version": "1.0.0",
+  "description": "Find public restrooms nearby",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Megga-Miister/Diamond-Lavs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Megga-Miister/Diamond-Lavs/issues"
+  },
+  "homepage": "https://github.com/Megga-Miister/Diamond-Lavs#readme"
+}
