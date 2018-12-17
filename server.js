@@ -9,6 +9,8 @@ const methodOverride = require('method-override');
 
 const app = express();
 
+app.use(cors());
+
 // set environment vars
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
