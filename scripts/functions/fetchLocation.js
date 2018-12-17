@@ -7,7 +7,8 @@
 // (request, response) request.body.search_query  -  format: '2901 3rd ave'
 
 // OUTPUTS:
-// response.render( (route), {lat: 47.618294, lng: -122.351190} )
+// response.render( (route), {lat: 47.618294, lng: -122.351190, lavs: lavs )
+//      where "lavs" is an array of 5 lav objects: [{lav_1},{lav_2},{lav_3},{lav_4},{lav_5}]
 
 // CHANGE LOG:
 // 12-17-2018 12:30pm (Gwen) Initial build and test.
@@ -24,8 +25,9 @@ function fetchLocation (request,response) {  // change (request) to (request,res
         // if data: save, send to front
       } else {
         let location = {lat: apiData.body.results[0].geometry.location.lat, lng: apiData.body.results[0].geometry.location.lng};
-        response.render(('/urhere'), {lat: location.lat, lng: location.lng});  // un-comment before running
         console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
+        let lavs = getLavs(location);
+        response.render(('/urhere'), {lat: location.lat, lng: location.lng, lavs: lavs});  // un-comment before running
       }
     })
     .catch( error => handleError(error)); // un-comment before running
