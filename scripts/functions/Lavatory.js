@@ -10,6 +10,7 @@
 
 // CHANGE LOG:
 // 12-17-2018 12:40pm (Guru) Initial build and test.
+// 12-17-2018 1:10pm (Guru) Added the avg properties to the Lavatory constructor and changed 'status' propoerty to 'deadOrAlive'.
 
 
 
@@ -20,8 +21,11 @@ function Lavatory(data) {
   this.votesTotal = data.votesTotal;
   this.votesClean = data.votesClean;
   this.votesEasyToFind = data.votesEasyToFind;
+  this.avgVotesTotal = data.avgVotesTotal;
+  this.angVotesClean = data.angVotesClean;
+  this.avgVotesEasyToFind = data.avgVotesEasyToFind;
   this.homeDB = data.homeDB;
-  this.status = data.status;
+  this.deadOrAlive = data.deadOrAlive;
   this.statusReason = data.statusReason;
 }
 
