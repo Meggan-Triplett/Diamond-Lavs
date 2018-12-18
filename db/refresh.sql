@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS api (
   lng NUMERIC,
   lat NUMERIC,
   name VARCHAR(255),
-  address VARCHAR(255),
+  vicinity VARCHAR(255),
   deadOrAlive VARCHAR(255),
   statusReason VARCHAR(255),
   votesTotal INTEGER,
