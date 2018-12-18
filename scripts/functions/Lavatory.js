@@ -30,7 +30,7 @@ function Lavatory(data) {
   this.deadOrAlive = data.deadOrAlive || 'alive';
   this.statusReason = data.statusReason || '';
   this.id = data.id || 0;
-  this.name = data.name || 'Seattle';
+  this.name = data.name || '';
   this.noToiletPaper = data.noToiletPaper || false;
   this.noToiletSeatCovers = data.noToiletSeatCovers || false;
   this.genderSpecific = data.genderSpecific || false;
