@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS backup;
+
 CREATE TABLE IF NOT EXISTS backup ();
 
 SELECT * INTO backup FROM api;
@@ -5,31 +7,6 @@ SELECT * INTO backup FROM api;
 DROP TABLE IF EXISTS api;
 
 CREATE TABLE IF NOT EXISTS api (
-  id SERIAL PRIMARY KEY,
-  lng NUMERIC,
-  lat NUMERIC,
-  name VARCHAR(255),
-  address VARCHAR(255),
-  deadOrAlive VARCHAR(255),
-  statusReason VARCHAR(255),
-  votesTotal INTEGER,
-  votesClean INTEGER,
-  votesEasyToFind INTEGER,
-  avgVotesTotal NUMERIC(2,1),
-  avgVotesClean NUMERIC(2,1),
-  avgVotesEasyToFind NUMERIC(2,1),
-  privateBiz BOOLEAN,
-  noTolietPaper BOOLEAN,
-  noTolietSeatCovers BOOLEAN,
-  genderSpecific BOOLEAN,
-  restingArea BOOLEAN,
-  mothersRoom BOOLEAN,
-  changingStation BOOLEAN,
-  bidet BOOLEAN,
-  feminineProducts BOOLEAN,
-);
-
-CREATE TABLE IF NOT EXISTS user (
   id SERIAL PRIMARY KEY,
   lng NUMERIC,
   lat NUMERIC,
@@ -43,9 +20,8 @@ CREATE TABLE IF NOT EXISTS user (
   avgVotesTotal NUMERIC(2,1),
   avgVotesClean NUMERIC(2,1),
   avgVotesEasyToFind NUMERIC(2,1),
-  privateBiz BOOLEAN,
-  noTolietPaper BOOLEAN,
-  noTolietSeatCovers BOOLEAN,
+  noToiletPaper BOOLEAN,
+  noToiletSeatCovers BOOLEAN,
   genderSpecific BOOLEAN,
   restingArea BOOLEAN,
   mothersRoom BOOLEAN,
