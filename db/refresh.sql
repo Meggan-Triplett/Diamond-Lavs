@@ -1,15 +1,13 @@
-DROP TABLE IF EXISTS backup;
+DROP TABLE IF EXISTS backuptbl;
 
-CREATE TABLE IF NOT EXISTS backup ();
-
-SELECT * INTO backup FROM api;
+SELECT * INTO backuptbl FROM api;
 
 DROP TABLE IF EXISTS api;
 
-CREATE TABLE IF NOT EXISTS api (
+CREATE TABLE apitbl (
   id SERIAL PRIMARY KEY,
-  lng NUMERIC,
   lat NUMERIC,
+  lng NUMERIC,
   name VARCHAR(255),
   vicinity VARCHAR(255),
   deadOrAlive VARCHAR(255),
@@ -31,19 +29,19 @@ CREATE TABLE IF NOT EXISTS api (
   homeDB VARCHAR(10)
 );
 
-INSERT INTO api (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, privateBiz, noTolietPaper, noTolietSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts) VALUES (
+INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
   47.6100898,
   -122.3424699,
   'First Starbucks',
   '1912 Pike Place',
   'alive',
   '',
-  '',
-  '',
-  '',
-  '',
-  '',
-  '',
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
   100,
   100,
   FALSE,
