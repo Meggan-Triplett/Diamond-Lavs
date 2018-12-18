@@ -10,7 +10,7 @@
     <% } else if (pagename === 'urhere') { %>
         <%- include('./../partials/map', {lat: lat, lng: lng}); %>
     <% } else if ( pagename === 'searchresults' ) { %>
-        <%- include('./../partials/map'); %>
+        <%- include('./../partials/map, {lat:lat,lng:lng}'); %>
         <%- include('./../partials/form-delete'); %>
         <%- include('./../partials/form-update-add'); %>
     <% } else if (pagename === 'thanks') { %>
