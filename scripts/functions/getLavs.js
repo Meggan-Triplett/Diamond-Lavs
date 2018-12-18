@@ -2,7 +2,7 @@
 'use strict';
 
 // DESCRIPTION:
-// This function accepts lat and lng, searches the DB by radius (increasing as needed to get min 5), returns array of objects for 5 closest lavs.
+// This function accepts a location object containing lat and lng, searches the DB by radius (increasing as needed to get min 5), returns array of objects for 5 closest lavs.
 
 // INPUTS:
 // (request) where location = {lat: 47.618294, lng: -122.351190}
@@ -12,11 +12,11 @@
 
 // DEPENDENCIES:
 // lookup.js = looks up lavs in DB by search radius
-// reduceLavs.js = reduces to 5 closest lavs
-// makeLavs.js = builds lav objects and returns them in an array
+// makeLavs.js = reduces lavs list to 5 closest, builds lav objects and returns them in an array
 
 // CHANGE LOG:
 // 12-17-2018 3:30pm (Gwen) Initial build.  Need DB build to test.
+// 12-17-2018 4:00pm (Gwen) Moved some calcs to makeLavs, added fxn call.
 
 
 // FUNCTION:
@@ -27,15 +27,7 @@ function getLavs (location) {
   lavs.push(lookup(location, radius, 'api').rows);
   lavs.push(lookup(location, radius, 'user').rows);
   // sort by distance
-  lavs.sort((a,b) => {
-    let distance = (val) => {
-      let x = location.lat - val.lat;
-      let y = location.lng - val.lng;
-      return Math.sqrt(x*x + y*y);
-    };
-    return distance(a) - distance(b);
-  });
-  return lavs.slice(0,5);
+  return makeLavs(lavs);
 }
 
 // TEST: (run in server.js to access DB)
