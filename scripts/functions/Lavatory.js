@@ -12,20 +12,21 @@
 // 12-17-2018 12:40pm (Guru) Initial build and test.
 // 12-17-2018 1:10pm (Guru) Added the avg properties to the Lavatory constructor and changed 'status' propoerty to 'deadOrAlive'.
 // 12-17-2018 4:05pm (Guru) Added default values to the Lavatory object.
+// 12-17-2018 4:20pm (Guru) Fixed few default values types for the Lavatory object.
 
 
 
 function Lavatory(data) {
-  this.lat = data.lat || '47.6062';
-  this.lng = data.lng || '122.3321';
-  this.address = data.address || '';
-  this.votesTotal = data.votesTotal || '0';
-  this.votesClean = data.votesClean || '0';
-  this.votesEasyToFind = data.votesEasyToFind || '0';
-  this.avgVotesTotal = data.avgVotesTotal || '0';
-  this.angVotesClean = data.angVotesClean || '0';
-  this.avgVotesEasyToFind = data.avgVotesEasyToFind || '0';
-  this.homeDB = data.homeDB || 'DB not found';
+  this.lat = data.lat || 47.6062;
+  this.lng = data.lng || -122.3321;
+  this.vicinity = data.vicinity || '';
+  this.votesTotal = data.votesTotal || 0;
+  this.votesClean = data.votesClean || 0;
+  this.votesEasyToFind = data.votesEasyToFind || 0;
+  this.avgVotesTotal = data.avgVotesTotal || 0;
+  this.angVotesClean = data.angVotesClean || 0;
+  this.avgVotesEasyToFind = data.avgVotesEasyToFind || 0;
+  this.homeDB = data.homeDB || 'api';
   this.deadOrAlive = data.deadOrAlive || 'alive';
   this.statusReason = data.statusReason || '';
 }
