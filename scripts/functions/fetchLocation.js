@@ -15,8 +15,13 @@
 
 
 // FUNCTION:
+const superagent = require('superagent');
+const getLavs = require('./scripts/functions/getLavs');
+
 function fetchLocation (request,response) {  // change (request) to (request,response) before running
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.data}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.address}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
+  console.log('query = ',request.query.address);
+  console.log('url = ',url);
   return superagent.get(url)
     .then( apiData => {
       // if no data: throw error
@@ -26,14 +31,15 @@ function fetchLocation (request,response) {  // change (request) to (request,res
       } else {
         let location = {lat: apiData.body.results[0].geometry.location.lat, lng: apiData.body.results[0].geometry.location.lng};
         console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
-        // let lavs = getLavs(location);
-        response.render(('/pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});  // un-comment before running
+        let lavs = getLavs(location);
+        response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});  // un-comment before running
       }
     })
     .catch( error => handleError(error)); // un-comment before running
 }
 
-module.exports.fetchLocation = fetchLocation;
+
+module.exports = fetchLocation;
 
 
 
