@@ -7,6 +7,8 @@
 
     <% if ( pagename === 'home' ) { %>
         <%- include('./../partials/address-input'); %>
+    <% } else if (pagename === 'urhere') { %>
+        <%- include('./../partials/map', {lat: lat, lng: lng}); %>
     <% } else if ( pagename === 'searchresults' ) { %>
         <%- include('./../partials/map'); %>
         <%- include('./../partials/form-delete'); %>
