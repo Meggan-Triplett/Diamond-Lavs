@@ -29,6 +29,16 @@ function Lavatory(data) {
   this.homeDB = data.homeDB || 'api';
   this.deadOrAlive = data.deadOrAlive || 'alive';
   this.statusReason = data.statusReason || '';
+  this.id = data.id || 0;
+  this.name = data.name || 'Seattle';
+  this.noToiletPaper = data.noToiletPaper || false;
+  this.noToiletSeatCovers = data.noToiletSeatCovers || false;
+  this.genderSpecific = data.genderSpecific || false;
+  this.restingArea = data.restingArea || false;
+  this.mothersRoom = data.mothersRoom || false;
+  this.changingStation = data.changingStation || false;
+  this.bidet = data.bidet || false;
+  this.feminineProducts = data.feminineProducts || false;
 }
 
 
