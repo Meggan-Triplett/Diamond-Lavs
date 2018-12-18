@@ -12,14 +12,15 @@ CREATE TABLE IF NOT EXISTS api (
   avgVotesTotal NUMERIC(2,1),
   avgVotesClean NUMERIC(2,1),
   avgVotesEasyToFind NUMERIC(2,1),
-  noToiletPaper BOOLEAN,
-  noToiletSeatCovers BOOLEAN,
+  noToiletPaper NUMERIC(3),
+  noToiletSeatCovers NUMERIC(3),
   genderSpecific BOOLEAN,
   restingArea BOOLEAN,
   mothersRoom BOOLEAN,
   changingStation BOOLEAN,
   bidet BOOLEAN,
   feminineProducts BOOLEAN,
+  homeDB VARCHAR(10)
 );
 
 
@@ -37,14 +38,15 @@ CREATE TABLE IF NOT EXISTS user (
   avgVotesTotal NUMERIC(2,1),
   avgVotesClean NUMERIC(2,1),
   avgVotesEasyToFind NUMERIC(2,1),
-  noToiletPaper BOOLEAN,
-  noToiletSeatCovers BOOLEAN,
+  noToiletPaper NUMERIC(3),
+  noToiletSeatCovers NUMERIC(3),
   genderSpecific BOOLEAN,
   restingArea BOOLEAN,
   mothersRoom BOOLEAN,
   changingStation BOOLEAN,
   bidet BOOLEAN,
   feminineProducts BOOLEAN,
+  homeDB VARCHAR(10)
 );
 
 INSERT INTO api (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, privateBiz, noTolietPaper, noTolietSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts) VALUES (
@@ -60,15 +62,15 @@ INSERT INTO api (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal
   '',
   '',
   '',
+  100,
+  100,
   FALSE,
   FALSE,
   FALSE,
   FALSE,
   FALSE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  'api'
 );
 
 INSERT INTO user (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, privateBiz, noTolietPaper, noTolietSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts) VALUES (
@@ -78,19 +80,19 @@ INSERT INTO user (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTota
   '1912 Pike Place',
   'alive',
   '',
-  '1',
-  '1',
-  '1',
-  '3.5',
-  '3.5',
-  '3.5',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  100,
+  100,
   FALSE,
   FALSE,
   FALSE,
   FALSE,
   FALSE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  'user'
 );
