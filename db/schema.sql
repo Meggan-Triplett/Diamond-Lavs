@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 INSERT INTO api (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, privateBiz, noTolietPaper, noTolietSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts) VALUES (
-  '47.6100898',
-  '-122.3424699',
+  47.6100898,
+  -122.3424699,
   'First Starbucks',
   '1912 Pike Place',
   'alive',
@@ -74,8 +74,8 @@ INSERT INTO api (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal
 );
 
 INSERT INTO user (lng, lat, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, privateBiz, noTolietPaper, noTolietSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts) VALUES (
-  '47.6100898',
-  '-122.3424699',
+  47.6100898,
+  -122.3424699,
   'First Starbucks',
   '1912 Pike Place',
   'alive',
