@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Diamond-Lavs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
+    <%- include('./../partials/head') %>
 <body>
     
-    <%- include('/partials/header') %>
-  
+    <%- include('./../partials/header') %>
 
+    <% if ( pagename === 'home' ) { %>
+        <%- include('./../partials/address-input'); %>
+    <% } else if ( pagename === 'searchresults' ) { %>
+        <%- include('./../partials/map'); %>
+        <%- include('./../partials/form-delete'); %>
+        <%- include('./../partials/form-update-add'); %>
+    <% } else if (pagename === 'thanks') { %>
+        <%- include('./../partials/thanks'); %>
+    <% } else { %>
+        <h3>ERROR: No pagename defined.</h3>
+    <% } %>
+    <%- include('./../partials/footer') %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <%- include('/partials/address-form'); %>
-  
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/scripts/app.js"></script> 
 </body>
 </html>
