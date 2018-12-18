@@ -26,12 +26,14 @@ function fetchLocation (request,response) {  // change (request) to (request,res
       } else {
         let location = {lat: apiData.body.results[0].geometry.location.lat, lng: apiData.body.results[0].geometry.location.lng};
         console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
-        let lavs = getLavs(location);
-        response.render(('/urhere'), {lat: location.lat, lng: location.lng, lavs: lavs});  // un-comment before running
+        // let lavs = getLavs(location);
+        response.render(('/pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});  // un-comment before running
       }
     })
     .catch( error => handleError(error)); // un-comment before running
 }
+
+module.exports.fetchLocation = fetchLocation;
 
 
 
