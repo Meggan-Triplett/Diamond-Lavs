@@ -97,7 +97,8 @@ function getLavs (location, response) {
     })
     .then(lavs => {
       // console.log('getLavs - fiveLavs = ', lavs);  // for testing constructor
-      response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
+      // response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
+      response.render(('./pages/index'), {lat: location.lat, lng: location.lng, lavs, pagename: 'searchresults'}); 
     })
   // sort by distance
 }
@@ -107,7 +108,7 @@ function lookup (latLng, radius, response) {
   const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng+radius.lng, latLng.lng-radius.lng];
   return client.query( SQL, values)
     .then(results => {
-      console.log('(lookup) SQL results: ',results.rows.length);
+      console.log('(lookup) SQL results: ', results.rows.length);
       return results;
     })
     .catch( error => handleError(error,response) );
@@ -124,7 +125,7 @@ function makeLavs (location,lavs) {
     return distance(a) - distance(b);
   });
   let lavsArray = lavs.slice(0,5).map((lav => new Lavatory(lav)));
-  console.log('(makeLavs) lavsArray = ',lavsArray.length);
+  console.log('(makeLavs) lavsArray = ', lavsArray.length);
   return lavsArray;
 }
 

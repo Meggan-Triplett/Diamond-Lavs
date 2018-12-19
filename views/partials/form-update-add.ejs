@@ -1,66 +1,74 @@
 <!-- INPUTS: formAction (update, add - from user select) -->
 
-<section>
-  <form id="add-update" action="/urhere" method="post">
-    <input type="hidden" name="_method" value="<%- formAction === 'update' ? 'put' : 'post' %>">
-    <h3><%- formAction === 'update' ? Update This Lav : Add This Lav</h3>
+<form id="add-update" action="/urhere" method="post" display="none" class="toggle">
+  <input type="hidden" name="_method" value="put">
+
+  <h3>Update the database!</h3>
+
+  <fieldset>
     <label>Name or Description:
       <input type="text" name="name" placeholder="eg - Cisco bldg"> <br>
     </label>
     <label>Address:
       <input type="text" name`="address" placeholder="2901 2nd Ave Seattle"><br>
     </label>
+  </fieldset>
+
+  <fieldset>
     <label>How would you rate this bathroom overall?
-        <input type="radio" name="voteOverall" value="1">
-        <input type="radio" name="voteOverall" value="2">
-        <input type="radio" name="voteOverall" value="3">
-        <input type="radio" name="voteOverall" value="4">
-        <input type="radio" name="voteOverall" value="5">
+      <input type="radio" name="voteOverall" value="1">
+      <input type="radio" name="voteOverall" value="2">
+      <input type="radio" name="voteOverall" value="3">
+      <input type="radio" name="voteOverall" value="4">
+      <input type="radio" name="voteOverall" value="5">
     </label>
     <label>How clean is it?
-        <input type="radio" name="voteClean" value="1">
-        <input type="radio" name="voteClean" value="2">
-        <input type="radio" name="voteClean" value="3">
-        <input type="radio" name="voteClean" value="4">
-        <input type="radio" name="voteClean" value="5">
+      <input type="radio" name="voteClean" value="1">
+      <input type="radio" name="voteClean" value="2">
+      <input type="radio" name="voteClean" value="3">
+      <input type="radio" name="voteClean" value="4">
+      <input type="radio" name="voteClean" value="5">
     </label>
     <label>How easy was it to find?
-        <input type="radio" name="voteEasyToFind" value="1">
-        <input type="radio" name="voteEasyToFind" value="2">
-        <input type="radio" name="voteEasyToFind" value="3">
-        <input type="radio" name="voteEasyToFind" value="4">
-        <input type="radio" name="voteEasyToFind" value="5">
+      <input type="radio" name="voteEasyToFind" value="1">
+      <input type="radio" name="voteEasyToFind" value="2">
+      <input type="radio" name="voteEasyToFind" value="3">
+      <input type="radio" name="voteEasyToFind" value="4">
+      <input type="radio" name="voteEasyToFind" value="5">
     </label>
+  </fieldset>
+  <fieldset>
     <p>Check the box if the bathroom is...</p>
     <label>...out of toilet paper:
-      <input type="checkbox" checked="unchecked" name="noToiletPaper">
+      <input type="checkbox" name="noToiletPaper">
     </label>
     <label>...out of seat covers:
-      <input type="checkbox" checked="unchecked" name="noToiletSeatCovers">
+      <input type="checkbox" name="noToiletSeatCovers">
     </label>
     <label>...gender specific:
-      <input type="checkbox" checked="unchecked" name="genderSpecific">
+      <input type="checkbox" name="genderSpecific">
     </label>
     <p>Check the box if the bathroom has...</p>
     <label>...a resting area:
-      <input type="checkbox" checked="unchecked" name="restingArea">
+      <input type="checkbox" name="restingArea">
     </label>
     <label>...a mother's room:
-      <input type="checkbox" checked="unchecked" name="mothersRoom">
+      <input type="checkbox" name="mothersRoom">
     </label>
     <label>...a baby changing station:
-      <input type="checkbox" checked="unchecked" name="changingStation">
+      <input type="checkbox" name="changingStation">
     </label>
     <label>...a bidet:
-      <input type="checkbox" checked="unchecked" name="bidet">
+      <input type="checkbox" name="bidet">
     </label>
     <label>...feminine hygiene products:
-      <input type="checkbox" checked="unchecked" name="feminineProducts">
+      <input type="checkbox" name="feminineProducts">
     </label>
-    <button>Add/Update Location</button> 
-    
-    <p name="id" value=""></p>
-    <p name="homeDB" value=""></p>
+  </fieldset>
+  
+  <button>Add/Update Location</button> 
 
-  </form>
-</section>
+  <p name="id" value=""></p>
+  <p name="homeDB" value=""></p>
+
+</form>
