@@ -20,6 +20,10 @@
 
 
 // FUNCTION:
+
+const lookup = require('./lookup');
+const makeLavs = require('./makeLavs');
+
 function getLavs (location) {
   let lavs = []; // array to hold final array of 5 lav objects
   let radius = {lat: .00362, lng: .00534};
@@ -31,6 +35,8 @@ function getLavs (location) {
 }
 
 // TEST: (run in server.js to access DB)
-let latLng = {lat: 47.618365, lng: -122.351126};
+// let latLng = {lat: 47.618365, lng: -122.351126};
 
-console.log(getLavs(latLng));
+// console.log(getLavs(latLng));
+
+module.exports = getLavs;

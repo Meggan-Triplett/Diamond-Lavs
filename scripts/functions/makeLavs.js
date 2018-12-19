@@ -32,6 +32,6 @@ function makeLavs (lavs) {
 }
 
 // TEST: (run in server.js to access DB)
-let allLavs = [{lav1},{lav2},{lav3},...]; // need object format to define fake data
+// let allLavs = [{lav1},{lav2},{lav3},...]; // need object format to define fake data
 
-console.log(getLavs(allLavs));
+// console.log(getLavs(allLavs));

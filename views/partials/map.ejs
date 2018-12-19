@@ -1,5 +1,9 @@
 <div>
   <h3>lat = <%= lat %></h3>
   <h3>lng = <%= lng %></h3>
-  <img id="map"  src="https://maps.googleapis.com/maps/api/staticmap?center=<%= lat %>%2c%20<%= lng %>&zoom=13&size=600x300&maptype=roadmap&key=${process.env.GEOCODE_API_KEY}" alt="You Are Here">
+  <!-- UPDATE WITH RAY'S MULTI-PIN RENDER WHEN AVAILABLE -->
+  <!-- <img id="map"  src="https://maps.google.com/maps?q=<%= lat %>,<%= lng %>&t=&z=13&ie=UTF8&iwloc=&output=embed" alt="You Are Here"> -->
+  <iframe width="600" height="500" id="map" src="https://maps.google.com/maps?q=<%= lat %>,<%= lng %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 </div>
+
+
