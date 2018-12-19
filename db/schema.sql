@@ -47,7 +47,7 @@ CREATE TABLE usertbl (
   homeDB VARCHAR(10)
 );
 
-INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
   47.6100898,
   -122.3424699,
   'First Starbucks',
@@ -58,8 +58,8 @@ INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTo
   3.5,
   2.5,
   4.1,
-  100,
-  100,
+  50,
+  50,
   FALSE,
   FALSE,
   FALSE,
@@ -69,7 +69,7 @@ INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTo
   'api'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
   47.6102198,
   -122.3424699,
   'Second Starbucks',
@@ -80,8 +80,8 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   3.5,
   2.5,
   4.1,
-  100,
-  100,
+  80,
+  20,
   FALSE,
   FALSE,
   FALSE,
@@ -91,7 +91,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   'user'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
   47.6100998,
   -122.3424699,
   'Third Starbucks',
@@ -102,8 +102,8 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   3.5,
   2.5,
   4.1,
-  100,
-  100,
+  45,
+  25,
   FALSE,
   FALSE,
   FALSE,
@@ -113,7 +113,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   'user'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
   47.6100898,
   -122.3425699,
   'Fourth Starbucks',
@@ -124,8 +124,8 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   3.5,
   2.5,
   4.1,
-  100,
-  100,
+  70,
+  10,
   FALSE,
   FALSE,
   FALSE,
@@ -135,7 +135,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   'user'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
   47.6101098,
   -122.3428199,
   'Fifth Starbucks',
@@ -146,7 +146,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   3.5,
   2.5,
   4.1,
-  100,
+  70,
   100,
   FALSE,
   FALSE,
