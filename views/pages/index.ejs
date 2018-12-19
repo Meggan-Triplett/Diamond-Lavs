@@ -11,13 +11,13 @@
         <%- include('./../partials/address-input'); %>
     <% } else if (pagename === 'urhere') { %>
         <%- include('./../partials/map', {lat: lat, lng: lng}); %>
-    <% } else if ( pagename === 'searchresults' ) { %>
-        <%- include('./../partials/map, {lat:lat,lng:lng}'); %>
+    <% } else if (pagename === 'searchresults') { %>
+        <%- include('./../partials/map', {lat: lat, lng: lng}); %>
         <% lavs.forEach( lav => { %>
-            <%- include('./../partials/details, {lav:lav}'); %>
+            <%- include('./../partials/details', {lav: lav}); %>
         <% }) %>
-        <%- include('./../partials/form-delete'); %>
         <%- include('./../partials/form-update-add'); %>
+        <%- include('./../partials/form-delete'); %>
     <% } else if (pagename === 'thanks') { %>
         <%- include('./../partials/thanks'); %>
     <% } else { %>
