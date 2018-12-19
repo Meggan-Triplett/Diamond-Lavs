@@ -76,9 +76,81 @@ INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTo
 );
 
 INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
-  47.6100898,
+  47.6102198,
   -122.3424699,
-  'First Starbucks',
+  'Second Starbucks',
+  '1912 Pike Place',
+  'alive',
+  '',
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  100,
+  100,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  'user'
+);
+
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+  47.6100998,
+  -122.3424699,
+  'Third Starbucks',
+  '1912 Pike Place',
+  'alive',
+  '',
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  100,
+  100,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  'user'
+);
+
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+  47.6100898,
+  -122.3425699,
+  'Fourth Starbucks',
+  '1912 Pike Place',
+  'alive',
+  '',
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  100,
+  100,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  FALSE,
+  'user'
+);
+
+INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
+  47.6101098,
+  -122.3428199,
+  'Fifth Starbucks',
   '1912 Pike Place',
   'alive',
   '',

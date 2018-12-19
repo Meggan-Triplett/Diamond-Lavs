@@ -18,7 +18,8 @@
 
 
 // FUNCTION:
-function makeLavs (lavs) {
+function makeLavs (location,lavs) {
+  console.log('inside makeLavs');
   lavs.sort((a,b) => {
     let distance = (val) => {
       let x = location.lat - val.lat;
@@ -28,7 +29,7 @@ function makeLavs (lavs) {
     return distance(a) - distance(b);
   });
   let lavsArray = lavs.slice(0,5).map((lav => new Lavatory(lav)));
-  console.log('(makeLavs) lavsArray = ',lavsArray);
+  console.log('(makeLavs) lavsArray = ',lavsArray.length);
   return lavsArray;
 }
 
