@@ -40,32 +40,32 @@ function Lavatory(data) {
   this.homeDB = data.homeDB || 'api';
 }
 
-
+module.exports = LavatoryConstructor();
 
 // Test 
-var dataTest = {
-  lat: 47.6062,
-  lng: -122.3321,
-  name: 'Armory',
-  vicinity: 'Seattle Center',
-  deadOrAlive: 'alive',
-  statusReason: 'closed to the public',
-  votesTotal: 100,
-  votesClean: 100,
-  votesEasyToFind: 100,
-  avgVotesTotal: 3.2,
-  angVotesClean: 2.9,
-  avgVotesEasyToFind: 4.2,
-  noToiletPaper: 7,
-  noToiletSeatCovers: 18,
-  genderSpecific: false,
-  restingArea: false,
-  mothersRoom: false,
-  changingStation: false,
-  bidet: false,
-  feminineProducts: false,
-  homeDB: 'api',  
-};
+// var dataTest = {
+//   lat: 47.6062,
+//   lng: -122.3321,
+//   name: 'Armory',
+//   vicinity: 'Seattle Center',
+//   deadOrAlive: 'alive',
+//   statusReason: 'closed to the public',
+//   votesTotal: 100,
+//   votesClean: 100,
+//   votesEasyToFind: 100,
+//   avgVotesTotal: 3.2,
+//   angVotesClean: 2.9,
+//   avgVotesEasyToFind: 4.2,
+//   noToiletPaper: 7,
+//   noToiletSeatCovers: 18,
+//   genderSpecific: false,
+//   restingArea: false,
+//   mothersRoom: false,
+//   changingStation: false,
+//   bidet: false,
+//   feminineProducts: false,
+//   homeDB: 'api',  
+// };
 
 // let testLav = new Lavatory(dataTest);
 // console.log (testLav);
