@@ -11,6 +11,6 @@ const search_query = {
     lat: 47.6100898,
     lng: -122.3424699,
     radius: 5000,
-    keyword: ['Starbucks'],
+    keyword: ['starbucks'],
   }]
 };
