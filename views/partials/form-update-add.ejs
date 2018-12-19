@@ -1,9 +1,9 @@
 <!-- INPUTS: formAction (update, add - from user select) -->
 
 <form id="add-update" action="/urhere" method="post" display="none" class="toggle">
-  <input type="hidden" name="_method" value="<%- formAction === 'update' ? 'put' : 'post' %>">
+  <input type="hidden" name="_method" value="put">
 
-  <h3><%- formAction === 'update' ? Update This Lav : Add This Lav</h3>
+  <h3>Update the database!</h3>
 
   <fieldset>
     <label>Name or Description:
@@ -40,29 +40,29 @@
   <fieldset>
     <p>Check the box if the bathroom is...</p>
     <label>...out of toilet paper:
-      <input type="checkbox" checked="unchecked" name="noToiletPaper">
+      <input type="checkbox" name="noToiletPaper">
     </label>
     <label>...out of seat covers:
-      <input type="checkbox" checked="unchecked" name="noToiletSeatCovers">
+      <input type="checkbox" name="noToiletSeatCovers">
     </label>
     <label>...gender specific:
-      <input type="checkbox" checked="unchecked" name="genderSpecific">
+      <input type="checkbox" name="genderSpecific">
     </label>
     <p>Check the box if the bathroom has...</p>
     <label>...a resting area:
-      <input type="checkbox" checked="unchecked" name="restingArea">
+      <input type="checkbox" name="restingArea">
     </label>
     <label>...a mother's room:
-      <input type="checkbox" checked="unchecked" name="mothersRoom">
+      <input type="checkbox" name="mothersRoom">
     </label>
     <label>...a baby changing station:
-      <input type="checkbox" checked="unchecked" name="changingStation">
+      <input type="checkbox" name="changingStation">
     </label>
     <label>...a bidet:
-      <input type="checkbox" checked="unchecked" name="bidet">
+      <input type="checkbox" name="bidet">
     </label>
     <label>...feminine hygiene products:
-      <input type="checkbox" checked="unchecked" name="feminineProducts">
+      <input type="checkbox" name="feminineProducts">
     </label>
   </fieldset>
   
