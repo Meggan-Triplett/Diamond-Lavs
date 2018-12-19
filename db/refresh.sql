@@ -13,9 +13,6 @@ CREATE TABLE apitbl (
   deadOrAlive VARCHAR(255),
   statusReason VARCHAR(255),
   votesTotal INTEGER,
-  voteOverall INTEGER,
-  voteClean INTEGER,
-  voteEasyToFind INTEGER,
   avgTotal NUMERIC(2,1),
   avgClean NUMERIC(2,1),
   avgEasyToFind NUMERIC(2,1),
@@ -31,16 +28,13 @@ CREATE TABLE apitbl (
 );
 
 INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES (
- 47.6100898,
+  47.6100898,
   -122.3424699,
   'First Starbucks',
   '1912 Pike Place',
   'alive',
   '',
   100,
-  3,
-  2,
-  4,
   3.5,
   2.5,
   4.1,

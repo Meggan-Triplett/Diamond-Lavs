@@ -29,8 +29,8 @@ const makeLavsAPI = require('./makeLavsAPI');
 function getPlacesAPI (makeLavsAPI) {
   makeLavsAPI();
   save: function() {
-    const SQL = `INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, votesEasyToFind, avgVotesTotal, avgVotesClean, avgVotesEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts,homeDB) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) ON CONFLICT DO NOTHING RETURNING id;`;
-    const values = [this.lat, this.lng, this.name, this.vicinity, this.deadOrAlive, this.statusReason, this.votesTotal, this.votesClean, this.votesEasyToFind, this.avgVotesTotal, this.angVotesClean, this.avgVotesEasyToFind, this.noToiletPaper, this.noToiletSeatCovers, this.genderSpecific, this.restingArea, this.mothersRoom, this.changingStation, this.bidet, this.feminineProducts, this.homeDB];
+    const SQL = `INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) ON CONFLICT DO NOTHING RETURNING id;`;
+    const values = [this.lat, this.lng, this.name, this.vicinity, this.deadOrAlive, this.statusReason, this.votesTotal, this.avgTotal, this.avgClean, this.avgEasyToFind, this.noToiletPaper, this.noToiletSeatCovers, this.genderSpecific, this.restingArea, this.mothersRoom, this.changingStation, this.bidet, this.feminineProducts, this.homeDB];
   
     client.query(SQL, values);
   };
