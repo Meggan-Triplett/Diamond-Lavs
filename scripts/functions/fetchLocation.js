@@ -16,7 +16,10 @@
 
 // FUNCTION:
 const superagent = require('superagent');
-const getLavs = require('./scripts/functions/getLavs');
+require('dotenv').config();
+
+const getLavs = require('./getLavs');
+// const handleError = require('./handleError');
 
 function fetchLocation (request,response) {  // change (request) to (request,response) before running
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.address}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
@@ -35,7 +38,7 @@ function fetchLocation (request,response) {  // change (request) to (request,res
         response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});  // un-comment before running
       }
     })
-    .catch( error => handleError(error)); // un-comment before running
+    // .catch( error => handleError(error,response)); // un-comment before running
 }
 
 

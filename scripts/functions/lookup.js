@@ -14,16 +14,23 @@
 
 
 // FUNCTION:
+
+const pg = require('pg');
+// const handleError = require('handleError');
+
 function lookup (latLng, radius, tablename) {
   const SQL = `SELECT * FROM ${tablename} WHERE lat BETWEEN $1 AND $2 AND lng BETWEEN $3 AND $4`;  // check API Data table name
   const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng-radius.lng, latLng.lng-radius.lng];
   return client.query( SQL, values)
-    .catch( error => handleError(error) );
+    // .catch( error => handleError(error,response) );
 }
 
-// TEST: (run in server.js to access DB)
-let latLng = {lat: 47.618365, lng: -122.351126};
-let radius = {lat: .00362, lng: .00534};
-let tablename = 'api';
+module.exports = lookup;
 
-console.log(lookup(latLng,radius,tablename));
+
+// TEST: (run in server.js to access DB)
+// let latLng = {lat: 47.618365, lng: -122.351126};
+// let radius = {lat: .00362, lng: .00534};
+// let tablename = 'api';
+
+// console.log(lookup(latLng,radius,tablename));
