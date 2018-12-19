@@ -83,7 +83,7 @@ function fetchLocation (request,response) {
       }
     })
     .catch( error => handleError(error,response)); // un-comment before running
-  }
+}
 
 function getLavs (location, response) {
   let lavs = []; // array to hold final array of 5 lav objects
@@ -91,12 +91,12 @@ function getLavs (location, response) {
   // get local results and put 
   lookup(location, radius, response)
     .then(results => {
-      console.log('(getLavs) lookup results: ', results.rows);
+      // console.log('(getLavs) lookup results: ', results.rows);
       lavs = results.rows;
     });
   // sort by distance
-  let allLavs = makeLavs(lavs);
-  console.log('getLavs - fiveLavs = ', allLavs);
+  // let allLavs = makeLavs(lavs); // for testing constructor
+  // console.log('getLavs - fiveLavs = ', allLavs);  // for testing constructor
   response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
 }
 
@@ -120,7 +120,32 @@ function makeLavs (lavs) {
     };
     return distance(a) - distance(b);
   });
-  let fiveLavs = [1,2,3,4,5];
-  // let fiveLavs = lavs.slice(0,5).map((lav => new Lavatory(lav)));
-  return fiveLavs;
+  let lavsArray = lavs.slice(0,5).map((lav => new Lavatory(lav)));
+  console.log('(makeLavs) lavsArray = ',lavsArray);
+  return lavsArray;
 }
+
+function Lavatory(data) {
+  this.lat = data.lat || 47.6062;
+  this.lng = data.lng || -122.3321;
+  this.name = data.name || '';
+  this.vicinity = data.vicinity || '';
+  this.deadOrAlive = data.deadOrAlive || 'alive';
+  this.statusReason = data.statusReason || '';
+  this.votesTotal = data.votesTotal || 0;
+  this.votesClean = data.votesClean || 0;
+  this.votesEasyToFind = data.votesEasyToFind || 0;
+  this.avgVotesTotal = data.avgVotesTotal || 0;
+  this.angVotesClean = data.angVotesClean || 0;
+  this.avgVotesEasyToFind = data.avgVotesEasyToFind || 0;
+  this.noToiletPaper = data.noToiletPaper || false;
+  this.noToiletSeatCovers = data.noToiletSeatCovers || false;
+  this.genderSpecific = data.genderSpecific || false;
+  this.restingArea = data.restingArea || false;
+  this.mothersRoom = data.mothersRoom || false;
+  this.changingStation = data.changingStation || false;
+  this.bidet = data.bidet || false;
+  this.feminineProducts = data.feminineProducts || false;
+  this.homeDB = data.homeDB || 'api';
+}
+

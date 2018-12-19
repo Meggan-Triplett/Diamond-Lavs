@@ -18,11 +18,15 @@
 const pg = require('pg');
 // const handleError = require('handleError');
 
-function lookup (latLng, radius, tablename) {
-  const SQL = `SELECT * FROM ${tablename} WHERE lat BETWEEN $1 AND $2 AND lng BETWEEN $3 AND $4`;  // check API Data table name
-  const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng-radius.lng, latLng.lng-radius.lng];
+function lookup (latLng, radius, response) {
+  const SQL = `SELECT * FROM apitbl WHERE lat BETWEEN $1 AND $2 AND ABS(lng) BETWEEN ABS($3) AND ABS($4) UNION SELECT * FROM usertbl WHERE lat BETWEEN $1 AND $2 AND ABS(lng) BETWEEN ABS($3) AND ABS($4)`;  // check API Data table name 
+  const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng+radius.lng, latLng.lng-radius.lng];
   return client.query( SQL, values)
-    // .catch( error => handleError(error,response) );
+    .then(results => {
+      console.log('(lookup) SQL results: ',results.rows);
+      return results;
+    })
+    .catch( error => handleError(error,response) );
 }
 
 module.exports = lookup;
