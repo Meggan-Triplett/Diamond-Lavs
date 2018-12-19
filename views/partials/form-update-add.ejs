@@ -1,6 +1,9 @@
+<!-- INPUTS: formAction (update, add - from user select) -->
+
 <section>
-  <form id="add-update" action="/urhere" method="get">
-    <h3>Add New Location</h3>
+  <form id="add-update" action="/urhere" method="post">
+    <input type="hidden" name="_method" value="<%- formAction === 'update' ? 'put' : 'post' %>">
+    <h3><%- formAction === 'update' ? Update This Lav : Add This Lav</h3>
     <label>Name or Description:
       <input type="text" name="name" placeholder="eg - Cisco bldg"> <br>
     </label>
@@ -8,31 +11,25 @@
       <input type="text" name`="address" placeholder="2901 2nd Ave Seattle"><br>
     </label>
     <label>How would you rate this bathroom overall?
-      <select name="votesTotal">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+        <input type="radio" name="voteOverall" value="1">
+        <input type="radio" name="voteOverall" value="2">
+        <input type="radio" name="voteOverall" value="3">
+        <input type="radio" name="voteOverall" value="4">
+        <input type="radio" name="voteOverall" value="5">
     </label>
     <label>How clean is it?
-      <select name="votesClean">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+        <input type="radio" name="voteClean" value="1">
+        <input type="radio" name="voteClean" value="2">
+        <input type="radio" name="voteClean" value="3">
+        <input type="radio" name="voteClean" value="4">
+        <input type="radio" name="voteClean" value="5">
     </label>
     <label>How easy was it to find?
-      <select name="votesEasyToFind">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+        <input type="radio" name="voteEasyToFind" value="1">
+        <input type="radio" name="voteEasyToFind" value="2">
+        <input type="radio" name="voteEasyToFind" value="3">
+        <input type="radio" name="voteEasyToFind" value="4">
+        <input type="radio" name="voteEasyToFind" value="5">
     </label>
     <p>Check the box if the bathroom is...</p>
     <label>...out of toilet paper:
@@ -62,5 +59,8 @@
     </label>
     <button>Add/Update Location</button> 
     
+    <p name="id" value=""></p>
+    <p name="homeDB" value=""></p>
+
   </form>
 </section>

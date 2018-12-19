@@ -1,10 +1,11 @@
 
-<h1>Remove Location?</h1>
-<select name="remove-location">
-    <option value="Closed to Public">Closed to Public</option>
-    <option value="Invalid Location">Invalid Location</option>
-    <option value="Closed">Closed</option>
-    <option value="No bathroom on site">No bathroom on site</option>
-    <option value="XXXXXXXXX">XXXXXXXXXX</option>
-    <button>Delete Location</button> 
-</select>
+<form id="delete" action="/urhere">
+  <input type="hidden" name="_method" value="post">
+  <h3>Why would you like to delete this location?</h3>
+  <select name="remove-location">
+    <option name="closed">This bathroom has been closed permanently.</option>
+    <option name="closed-to-public">This bathroom isn't open to the public.</option>
+    <option name="does-not-exist">I couldn't find a bathroom here.</option>
+    <button>Flush it!</button> 
+  </select>
+</form>
