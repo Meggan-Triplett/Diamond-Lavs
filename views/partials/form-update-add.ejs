@@ -1,13 +1,65 @@
 <section>
-  <h3>Add New Location</h3>
-  <form id="add-location">
-    Name of Location <input type="text" location="location name "> <br>
-    Address <input type="text" location="location address"> <br>
-    <input type=" radio" name="access" value="Easily Accessible"> Easily Accessible
-    <input type=" radio" name="Changing Station" value="Changing Station"> Changing Station
-    <input type=" radio" name="Feminine Hygiene Products" value="Feminine Hygiene Products"> Feminine Hygiene Products
-    <input type=" radio" name="Safe Needle Disposal" value="Safe Needle Disposal"> Safe Needle Disposal
-    <input type=" radio" name="Toilet Seat Cover" value="Toilet Seat Cover"> Toilet Seat Cover <br><br>
+  <form id="add-update" action="/urhere" method="get">
+    <h3>Add New Location</h3>
+    <label>Name or Description:
+      <input type="text" name="name" placeholder="eg - Cisco bldg"> <br>
+    </label>
+    <label>Address:
+      <input type="text" name`="address" placeholder="2901 2nd Ave Seattle"><br>
+    </label>
+    <label>How would you rate this bathroom overall?
+      <select name="votesTotal">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </label>
+    <label>How clean is it?
+      <select name="votesClean">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </label>
+    <label>How easy was it to find?
+      <select name="votesEasyToFind">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </label>
+    <p>Check the box if the bathroom is...</p>
+    <label>...out of toilet paper:
+      <input type="checkbox" checked="unchecked" name="noToiletPaper">
+    </label>
+    <label>...out of seat covers:
+      <input type="checkbox" checked="unchecked" name="noToiletSeatCovers">
+    </label>
+    <label>...gender specific:
+      <input type="checkbox" checked="unchecked" name="genderSpecific">
+    </label>
+    <p>Check the box if the bathroom has...</p>
+    <label>...a resting area:
+      <input type="checkbox" checked="unchecked" name="restingArea">
+    </label>
+    <label>...a mother's room:
+      <input type="checkbox" checked="unchecked" name="mothersRoom">
+    </label>
+    <label>...a baby changing station:
+      <input type="checkbox" checked="unchecked" name="changingStation">
+    </label>
+    <label>...a bidet:
+      <input type="checkbox" checked="unchecked" name="bidet">
+    </label>
+    <label>...feminine hygiene products:
+      <input type="checkbox" checked="unchecked" name="feminineProducts">
+    </label>
     <button>Add/Update Location</button> 
     
   </form>
