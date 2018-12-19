@@ -17,8 +17,6 @@
 // 12-19-2018 3:00am (Meggan) Initial build. 
 
 // FUNCTION:
-const superagent = require('superagent');
-require('dotenv').config();
 
 const LavatoryConstructor = require('Lavatory.js');
 const fetchAPI = require('fetchAPI.js');
