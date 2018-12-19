@@ -92,12 +92,14 @@ function getLavs (location, response) {
   lookup(location, radius, response)
     .then(results => {
       // console.log('(getLavs) lookup results: ', results.rows);
-      lavs = results.rows;
-    });
+      lavs = makeLavs(location,results.rows); // for testing constructor
+      return lavs;
+    })
+    .then(lavs => {
+      // console.log('getLavs - fiveLavs = ', lavs);  // for testing constructor
+      response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
+    })
   // sort by distance
-  // let allLavs = makeLavs(lavs); // for testing constructor
-  // console.log('getLavs - fiveLavs = ', allLavs);  // for testing constructor
-  response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
 }
 
 function lookup (latLng, radius, response) {
@@ -105,13 +107,14 @@ function lookup (latLng, radius, response) {
   const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng+radius.lng, latLng.lng-radius.lng];
   return client.query( SQL, values)
     .then(results => {
-      console.log('(lookup) SQL results: ',results.rows);
+      console.log('(lookup) SQL results: ',results.rows.length);
       return results;
     })
     .catch( error => handleError(error,response) );
 }
 
-function makeLavs (lavs) {
+function makeLavs (location,lavs) {
+  console.log('inside makeLavs');
   lavs.sort((a,b) => {
     let distance = (val) => {
       let x = location.lat - val.lat;
@@ -121,7 +124,7 @@ function makeLavs (lavs) {
     return distance(a) - distance(b);
   });
   let lavsArray = lavs.slice(0,5).map((lav => new Lavatory(lav)));
-  console.log('(makeLavs) lavsArray = ',lavsArray);
+  console.log('(makeLavs) lavsArray = ',lavsArray.length);
   return lavsArray;
 }
 

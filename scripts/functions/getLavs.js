@@ -31,12 +31,14 @@ function getLavs (location, response) {
   lookup(location, radius, response)
     .then(results => {
       // console.log('(getLavs) lookup results: ', results.rows);
-      lavs = results.rows;
-    });
+      lavs = makeLavs(location,results.rows); // for testing constructor
+      return lavs;
+    })
+    .then(lavs => {
+      // console.log('getLavs - fiveLavs = ', lavs);  // for testing constructor
+      response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
+    })
   // sort by distance
-  // let allLavs = makeLavs(lavs); // for testing constructor
-  // console.log('getLavs - fiveLavs = ', allLavs);  // for testing constructor
-  response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
 }
 
 // TEST: (run in server.js to access DB)

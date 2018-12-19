@@ -37,7 +37,7 @@ function fetchLocation (request,response) {
       }
     })
     .catch( error => handleError(error,response)); // un-comment before running
-  }
+}
 
 
 module.exports = fetchLocation;

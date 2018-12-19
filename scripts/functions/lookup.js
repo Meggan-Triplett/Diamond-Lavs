@@ -23,7 +23,7 @@ function lookup (latLng, radius, response) {
   const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng+radius.lng, latLng.lng-radius.lng];
   return client.query( SQL, values)
     .then(results => {
-      console.log('(lookup) SQL results: ',results.rows);
+      console.log('(lookup) SQL results: ',results.rows.length);
       return results;
     })
     .catch( error => handleError(error,response) );
