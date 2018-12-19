@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS backuptbl;
 
-SELECT * INTO backuptbl FROM api;
+SELECT * INTO backuptbl FROM apitbl;
 
-DROP TABLE IF EXISTS api;
+DROP TABLE IF EXISTS apitbl;
 
 CREATE TABLE apitbl (
   id SERIAL PRIMARY KEY,
