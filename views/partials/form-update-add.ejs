@@ -1,36 +1,43 @@
 <!-- INPUTS: formAction (update, add - from user select) -->
 
-<section>
-  <form id="add-update" action="/urhere" method="post">
-    <input type="hidden" name="_method" value="<%- formAction === 'update' ? 'put' : 'post' %>">
-    <h3><%- formAction === 'update' ? Update This Lav : Add This Lav</h3>
+<form id="add-update" action="/urhere" method="post" display="none" class="toggle">
+  <input type="hidden" name="_method" value="<%- formAction === 'update' ? 'put' : 'post' %>">
+
+  <h3><%- formAction === 'update' ? Update This Lav : Add This Lav</h3>
+
+  <fieldset>
     <label>Name or Description:
       <input type="text" name="name" placeholder="eg - Cisco bldg"> <br>
     </label>
     <label>Address:
       <input type="text" name`="address" placeholder="2901 2nd Ave Seattle"><br>
     </label>
+  </fieldset>
+
+  <fieldset>
     <label>How would you rate this bathroom overall?
-        <input type="radio" name="voteOverall" value="1">
-        <input type="radio" name="voteOverall" value="2">
-        <input type="radio" name="voteOverall" value="3">
-        <input type="radio" name="voteOverall" value="4">
-        <input type="radio" name="voteOverall" value="5">
+      <input type="radio" name="voteOverall" value="1">
+      <input type="radio" name="voteOverall" value="2">
+      <input type="radio" name="voteOverall" value="3">
+      <input type="radio" name="voteOverall" value="4">
+      <input type="radio" name="voteOverall" value="5">
     </label>
     <label>How clean is it?
-        <input type="radio" name="voteClean" value="1">
-        <input type="radio" name="voteClean" value="2">
-        <input type="radio" name="voteClean" value="3">
-        <input type="radio" name="voteClean" value="4">
-        <input type="radio" name="voteClean" value="5">
+      <input type="radio" name="voteClean" value="1">
+      <input type="radio" name="voteClean" value="2">
+      <input type="radio" name="voteClean" value="3">
+      <input type="radio" name="voteClean" value="4">
+      <input type="radio" name="voteClean" value="5">
     </label>
     <label>How easy was it to find?
-        <input type="radio" name="voteEasyToFind" value="1">
-        <input type="radio" name="voteEasyToFind" value="2">
-        <input type="radio" name="voteEasyToFind" value="3">
-        <input type="radio" name="voteEasyToFind" value="4">
-        <input type="radio" name="voteEasyToFind" value="5">
+      <input type="radio" name="voteEasyToFind" value="1">
+      <input type="radio" name="voteEasyToFind" value="2">
+      <input type="radio" name="voteEasyToFind" value="3">
+      <input type="radio" name="voteEasyToFind" value="4">
+      <input type="radio" name="voteEasyToFind" value="5">
     </label>
+  </fieldset>
+  <fieldset>
     <p>Check the box if the bathroom is...</p>
     <label>...out of toilet paper:
       <input type="checkbox" checked="unchecked" name="noToiletPaper">
@@ -57,10 +64,11 @@
     <label>...feminine hygiene products:
       <input type="checkbox" checked="unchecked" name="feminineProducts">
     </label>
-    <button>Add/Update Location</button> 
-    
-    <p name="id" value=""></p>
-    <p name="homeDB" value=""></p>
+  </fieldset>
+  
+  <button>Add/Update Location</button> 
 
-  </form>
-</section>
+  <p name="id" value=""></p>
+  <p name="homeDB" value=""></p>
+
+</form>
