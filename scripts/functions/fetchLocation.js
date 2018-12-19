@@ -21,10 +21,9 @@ require('dotenv').config();
 const getLavs = require('./getLavs');
 // const handleError = require('./handleError');
 
-function fetchLocation (request,response) {  // change (request) to (request,response) before running
+function fetchLocation (request,response) {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.address}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
   console.log('query = ',request.query.address);
-  console.log('url = ',url);
   return superagent.get(url)
     .then( apiData => {
       // if no data: throw error
@@ -34,12 +33,11 @@ function fetchLocation (request,response) {  // change (request) to (request,res
       } else {
         let location = {lat: apiData.body.results[0].geometry.location.lat, lng: apiData.body.results[0].geometry.location.lng};
         console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
-        let lavs = getLavs(location);
-        response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});  // un-comment before running
+        getLavs(location,response);
       }
     })
-    // .catch( error => handleError(error,response)); // un-comment before running
-}
+    .catch( error => handleError(error,response)); // un-comment before running
+  }
 
 
 module.exports = fetchLocation;

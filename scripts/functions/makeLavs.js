@@ -27,8 +27,9 @@ function makeLavs (lavs) {
     };
     return distance(a) - distance(b);
   });
-  let fiveLavs = lavs.slice(0,5).map((lav => new Lavatory(lav)));
-  return fiveLavs;
+  let lavsArray = lavs.slice(0,5).map((lav => new Lavatory(lav)));
+  console.log('(makeLavs) lavsArray = ',lavsArray);
+  return lavsArray;
 }
 
 // TEST: (run in server.js to access DB)

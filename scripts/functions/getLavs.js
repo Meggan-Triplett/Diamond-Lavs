@@ -24,14 +24,19 @@
 const lookup = require('./lookup');
 const makeLavs = require('./makeLavs');
 
-function getLavs (location) {
+function getLavs (location, response) {
   let lavs = []; // array to hold final array of 5 lav objects
-  let radius = {lat: .00362, lng: .00534};
+  let radius ={lat: 1, lng: 1}; // {lat: .00362, lng: .00534};
   // get local results and put 
-  lavs.push(lookup(location, radius, 'api').rows);
-  lavs.push(lookup(location, radius, 'user').rows);
+  lookup(location, radius, response)
+    .then(results => {
+      // console.log('(getLavs) lookup results: ', results.rows);
+      lavs = results.rows;
+    });
   // sort by distance
-  return makeLavs(lavs);
+  // let allLavs = makeLavs(lavs); // for testing constructor
+  // console.log('getLavs - fiveLavs = ', allLavs);  // for testing constructor
+  response.render(('./pages/index'), {lat: location.lat, lng: location.lng, pagename: 'urhere'});
 }
 
 // TEST: (run in server.js to access DB)
