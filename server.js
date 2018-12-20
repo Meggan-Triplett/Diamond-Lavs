@@ -96,7 +96,7 @@ function fetchLocation (request,response) {
         // if data: save, send to front
       } else {
         let location = {lat: apiData.body.results[0].geometry.location.lat, lng: apiData.body.results[0].geometry.location.lng};
-        console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
+        // console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
         getLavs(location,response);
       }
     })
@@ -109,7 +109,7 @@ function getLavs (location, response) {
   // get local results and put 
   lookup(location, radius, response)
     .then(results => {
-      // console.log('(getLavs) lookup results: ', results.rows);
+      console.log('(getLavs) lookup results: ', results.rows);
       lavs = makeLavs(location,results.rows); // for testing constructor
       return lavs;
     })
@@ -126,10 +126,10 @@ function lookup (latLng, radius, response) {
   const SQL = `SELECT * FROM apitbl WHERE deadoralive=$1 UNION SELECT * FROM usertbl WHERE deadoralive=$1`;
   const values = ['alive'];
   // const values = [latLng.lat-radius.lat, latLng.lat+radius.lat, latLng.lng+radius.lng, latLng.lng-radius.lng, 'alive'];
-  // return client.query( SQL, values)
+  console.log('go look up now');
   return client.query( SQL,values)
     .then(results => {
-      // console.log('(lookup) SQL results: ', results.rows.length);
+      console.log('(lookup) SQL results: ', results.rows.length);
       return results;
     })
     .catch( error => handleError(error,response) );
@@ -175,7 +175,7 @@ function updateLav (request,response) {
   let id = request.params.lav_id.split('-')[0];
   let whichdb = request.params.lav_id.split('-')[1];
   console.log('(update) request.body: ',request.body);
-  let {name, vicinity, voteoverall, voteclean, voteeasytofind, restingarea, mothersroom, changingstation, bidet, feminineproducts} = request.body;
+  let {name, vicinity, voteoverall, voteclean, voteeasytofind} = request.body;
 
   let SQLgrab = `SELECT votestotal,avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers FROM ${whichdb} WHERE id=${id}`;
   client.query(SQLgrab)
@@ -207,20 +207,25 @@ function updateLav (request,response) {
       let feminineproducts = request.body.feminineproducts ? true : false;
       let homedb = 'usertbl';
       let deadoralive = 'alive';
-
-      let valuesupdate = [avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, votestotal, homedb, deadoralive, id, name, vicinity,];
       let SQLupdate = 'UPDATE usertbl SET name=$16, vicinity=$17, avgtotal=$1,avgclean=$2,avgeasytofind=$3,notoiletpaper=$4,notoiletseatcovers=$5,genderspecific=$6,restingarea=$7,mothersroom=$8,changingstation=$9,bidet=$10,feminineproducts=$11,votestotal=$12,homedb=$13,deadoralive=$14 where id=$15;';
+
+      let valuesupdate = [avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, votestotal, homedb, deadoralive, id, name, vicinity];
       if  (whichdb === 'apitbl'){
-        let SQLadd = `INSERT INTO usertbl SELECT * FROM apitbl WHERE id=$1 returning id`;
-        let valuesadd = [id];
-        let SQLdelete = `DELETE FROM apitbl WHERE id=$1;`;
-        let new_id;
-        // console.log('', values);
-        client.query(SQLadd,valuesadd)
+        let SQLpull = `SELECT * FROM apitbl WHERE id=${id}`;
+        console.log(`LN215: SQLpull = ${SQLpull}`);
+        client.query(SQLpull)
+          .then( results => {
+            console.log('SQLpull results: ',results.rows)
+            let {lat,lng,statusreason,votestotal} = results.rows[0];
+            let values = [lat,lng,statusreason,votestotal,'usertbl'];
+            let SQLadd = `INSERT INTO usertbl (lat,lng,statusreason,votestotal,homedb) VALUES ($1,$2,$3,$4,$5) returning id`;
+            return client.query(SQLadd,values)
+          })
           .then(results => {
-            console.log('returned ID: ', results);
-            // valuesupdate.push(results.rows[0].id);
-            client.query(SQLdelete,valuesadd)
+            console.log('returned ID: ', results.rows[0].id);
+            valuesupdate[14] = results.rows[0].id;
+            let SQLdelete = `DELETE FROM apitbl WHERE id=${id};`;
+            client.query(SQLdelete)
           }) 
           .then(() => {
             client.query(SQLupdate,valuesupdate)

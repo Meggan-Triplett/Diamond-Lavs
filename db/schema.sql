@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS usertbl;
 
 CREATE TABLE apitbl (
   id SERIAL PRIMARY KEY,
-  lat FLOAT(53),
-  lng FLOAT(53),
+  lat VARCHAR(255),
+  lng VARCHAR(255),
   name VARCHAR(255),
   vicinity VARCHAR(255),
   deadoralive VARCHAR(255),
@@ -26,8 +26,8 @@ CREATE TABLE apitbl (
 
 CREATE TABLE usertbl (
   id SERIAL PRIMARY KEY,
-  lat FLOAT(53),
-  lng FLOAT(53),
+  lat VARCHAR(255),
+  lng VARCHAR(255),
   name VARCHAR(255),
   vicinity VARCHAR(255),
   deadoralive VARCHAR(255),
