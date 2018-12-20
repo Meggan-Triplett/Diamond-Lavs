@@ -66,7 +66,7 @@ INSERT INTO apitbl (lat, lng, name, vicinity, deadoralive, statusreason, votesto
   FALSE,
   TRUE,
   FALSE,
-  'api'
+  'apitbl'
 );
 
 INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
@@ -88,7 +88,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votest
   FALSE,
   TRUE,
   FALSE,
-  'user'
+  'usertbl'
 );
 
 INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
@@ -110,7 +110,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votest
   FALSE,
   TRUE,
   FALSE,
-  'user'
+  'usertbl'
 );
 
 INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
@@ -132,7 +132,7 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votest
   FALSE,
   TRUE,
   FALSE,
-  'user'
+  'usertbl'
 );
 
 INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
@@ -154,5 +154,5 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votest
   FALSE,
   TRUE,
   FALSE,
-  'user'
+  'usertbl'
 );

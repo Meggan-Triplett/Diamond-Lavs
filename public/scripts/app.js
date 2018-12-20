@@ -13,17 +13,7 @@ $('h4.picklav').on('click', function(event) {
 
 });
 
-// user selects 'add' from results view
-// do not pre-populate 'add-update' form
-$('#useradd').on('click', function(event) {
-  event.preventDefault();
 
-  $('.details').css('display','none');
-  $('form').css('display','none');
-
-  $('#add-update-form').css('display','block');
-  
-});
 
 // user selects 'delete' from lav details
 $('.userdelete').on('click', function(event) {
@@ -38,11 +28,28 @@ $('.userdelete').on('click', function(event) {
   $('p[name="id"]').val(selected.attr(`${selected.attr("id")}`));
 
   $('#delete-form').attr('action', `/deleteLav/${selected.attr("id")}`);
-  $('#delete-form').find('[name="form-method"]').val('put');
   console.log('form: ', $('#delete-form'));
 
   $('#delete-form').css('display','block');
 
+});
+
+// user selects 'add' from results view
+// do not pre-populate 'add-update' form
+$('#useradd').on('click', function(event) {
+  event.preventDefault();
+
+  $('.details').css('display','none');
+  $('form').css('display','none');
+
+  $('#add-update-form').attr('action', `/addLav`);
+  $('#form-method').val('post');
+  $('#add-update-form').attr('method', 'post');
+  console.log('add form method: ',  $('#add-update-form').attr('method'));
+
+
+  $('#add-update-form').css('display','block');
+  
 });
 
 // user selects 'update' from lav details
@@ -56,7 +63,8 @@ $('.userupdate').on('click', function(event) {
   let selected = $(this).parent();
 
   $('#add-update-form').attr('action', `/updateLav/${selected.attr("id")}`);
-  $('#add-update-form').find('[name="form-method"]').val('put');
+  $('#add-update-form').attr('method', 'post');
+  $('#form-method').val('put');
 
   console.log('form: ', $('#add-update-form'));
 
