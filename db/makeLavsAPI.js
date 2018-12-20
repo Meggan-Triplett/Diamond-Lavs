@@ -18,10 +18,10 @@
 
 // FUNCTION:
 
+const search_query = require('places-api-query.js');
 const LavatoryConstructor = require('Lavatory.js');
 const fetchAPI = require('fetchAPI.js');
 
-fetchAPI();
 
 function makeLavsAPI (fetchAPI) {
   let lavatories = [];

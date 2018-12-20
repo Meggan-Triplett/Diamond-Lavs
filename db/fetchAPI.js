@@ -21,14 +21,17 @@
 // FUNCTION:
 
 // Superagent and dotenv to test on this page
-// const superagent = require('superagent');
-// require('dotenv').config();
+const superagent = require('superagent');
+const handleError = require('handleError');
+require('dotenv').config();
 
 function fetchAPI (search_query) {
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${search_query.location.lat},${search_query.location.lng}&radius=${search_query.location.radius}&keyword=${search_query.location.keyword}&key=${process.env.GEOCODE_API_KEY}`;
   return superagent.get(url)
-  .then ( apiData => apiData)
-  .catch( error => handleError(error));
+    .then ( apiData => {
+      return apiData;
+    })
+    .catch( error => handleError(error));
 }
 
 module.exports = fetchAPI();

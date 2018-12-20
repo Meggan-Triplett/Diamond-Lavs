@@ -255,3 +255,85 @@ function addLav (request,response) {
     .then(response.redirect(('/')))
     .catch(error => handleError(error));
 }
+
+
+
+
+// REFRESH SANDBOX
+
+app.get(('/refreshdb'), (request,response) => {
+  console.log('refreshing...');
+  getPlacesAPI()
+})
+
+const search_query = {
+  location: [{
+    lat: 47.6100898,
+    lng: -122.3424699,
+    radius: 1000,
+    keyword: 'starbucks',
+  }]
+};
+
+function getPlacesAPI () {
+  fetchAPI(search_query)
+    .then( rawData => makeLavsAPI(rawData) )
+    .then( lavatories => {
+      console.log('lavatories to DB: ',lavatories[0]);
+      lavatories.forEach(lavatory => {
+        const SQL = `INSERT INTO apitbl VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);`;
+        const values = [lavatory.lat, lavatory.lng, lavatory.name, lavatory.vicinity, lavatory.deadoralive, lavatory.statusreason, lavatory.votestotal, lavatory.avgtotal, lavatory.avgclean, lavatory.avgeasytofind, lavatory.notoiletpaper, lavatory.notoiletseatcovers, lavatory.genderspecific, lavatory.restingarea, lavatory.mothersroom, lavatory.changingstation, lavatory.bidet, lavatory.feminineproducts, lavatory.homedb];
+        client.query(SQL, values);
+      })
+    })
+}
+
+
+function fetchAPI (search_query) {
+  console.log('search_query: ',search_query);
+  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${search_query.location[0].lat},${search_query.location[0].lng}&radius=${search_query.location[0].radius}&keyword=${search_query.location[0].keyword}&key=${process.env.GEOCODE_API_KEY}`;
+  console.log('url: ',url);
+  return superagent.get(url)
+    .then ( apiData => {
+      console.log('superagent results: ',apiData.body.results);
+      return apiData.body.results;
+    })
+    .catch( error => handleError(error));
+}
+
+
+
+function makeLavsAPI (rawData) {
+  let lavatories = [];
+  rawData.forEach(location => {
+    lavatories.push(new Lavatory(location));
+  });
+  console.log('lavatories.length',lavatories.length);
+  return lavatories;
+}
+
+
+
+
+
+function Lavatory(data) {
+  this.lat = data.lat || 47.6062;
+  this.lng = data.lng || -122.3321;
+  this.name = data.name || '';
+  this.vicinity = data.vicinity || '';
+  this.deadoralive = data.deadoralive || 'alive';
+  this.statusreason = data.statusreason || '';
+  this.votestotal = data.votestotal || 0;
+  this.avgtotal = data.avgtotal || 0;
+  this.avgclean = data.avgclean || 0;
+  this.avgeasytofind = data.avgeasytofind || 0;
+  this.notoiletpaper = data.notoiletpaper || false;
+  this.notoiletseatcovers = data.notoiletseatcovers || false;
+  this.genderspecific = data.genderspecific || false;
+  this.restingarea = data.restingarea || false;
+  this.mothersroom = data.mothersroom || false;
+  this.changingstation = data.changingstation || false;
+  this.bidet = data.bidet || false;
+  this.feminineproducts = data.feminineproducts || false;
+  this.homedb = data.homedb || 'api';
+}
