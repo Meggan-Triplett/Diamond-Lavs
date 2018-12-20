@@ -27,10 +27,9 @@ client.on('error', err => console.error(er));
 
 const makeLavsAPI = require('./makeLavsAPI');
 
-makeLavsAPI();
 
 function getPlacesAPI (makeLavsAPI) {
-  save: makeLavsAPI.forEach(lavatory => {
+  makeLavsAPI.forEach(lavatory => {
     const SQL = `INSERT INTO apitbl VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);`;
     const values = [this.lat, this.lng, this.name, this.vicinity, this.deadoralive, this.statusreason, this.votestotal, this.avgtotal, this.avgclean, this.avgeasytofind, this.notoiletpaper, this.notoiletseatcovers, this.genderspecific, this.restingarea, this.mothersroom, this.changingstation, this.bidet, this.feminineproducts, this.homedb];
 
