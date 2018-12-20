@@ -1,6 +1,6 @@
 <!-- INPUTS: formAction (1 DB row, all columns) -->
 
-<div name="details" display="block" class="toggle">
+<div id="<%= lav.id %>" class="details hideme">
   <h3>Here's what others are saying about this bathroom.</h3>
   <p>Name: <span name="name"><%= lav.name %></span></p>
   <p>Vicinity: <span name="vicinity"><%= lav.vicinity %></span></p>
@@ -19,10 +19,12 @@
   <p>Feminine hygiene products: <span name="feminineproducts"><%= lav.feminineproducts %></span></p>
   
   <!-- hidden tags to carry data to client-->
-  <p name="id" value="<%= lav.id %>"></p>
   <p name="lat" value="<%= lav.lat %>"></p>
   <p name="lng" value="<%= lav.lng %>"></p>
   <p name="votestotal" value="<%= lav.votestotal %>"></p>
   <p name="homedb" value="<%= lav.homedb %>"></p>
   
+  <h4 class="userupdate" class="clickme">Rate This Lav</h4>
+  <h4 id="userdelete" class="clickme">Delete This Lav</h4>
+  <h4 class="cancel" class="clickme">Hide Details</h4>
 </div>

@@ -15,8 +15,9 @@
 
 
 // FUNCTION:
+
 function updateLav (request,response) {
-  let SQL = 'UPDATE user SET votesTotal=$1,votesClean=$2,votesEasyToFind=$3,avgVotesTotal=$4,avgVotesClean=$5,avgVotesEasyToFind=$6,noToiletPaper=$7,noToiletSeatCovers=$8,genderSpecific=$9,restingArea=$10,mothersRoom=$11,changingStation=$12,bidet=$13,feminineProducts=$14 where id=$15;';
+  let SQL = 'UPDATE user SET votestotal=$1,avgtotal=$4,avgclean=$5,avgeasytofind=$6,notoiletpaper=$7,notoiletseatcovers=$8,genderspecific=$9,restingarea=$10,mothersroom=$11,changingstation=$12,bidet=$13,feminineproducts=$14 where id=$15;';
   let {votesTotal,votesClean,votesEasyToFind,avgVotesTotal,avgVotesClean,avgVotesEasyToFind,noToiletPaper,noToiletSeatCovers,genderSpecific,restingArea,mothersRoom,changingStation,bidet,feminineProducts,id} = request.params;
   let values = [votesTotal,votesClean,votesEasyToFind,avgVotesTotal,avgVotesClean,avgVotesEasyToFind,noToiletPaper,noToiletSeatCovers,genderSpecific,restingArea,mothersRoom,changingStation,bidet,feminineProducts,id];
 

@@ -43,7 +43,7 @@ client.on('error', err => console.error(err));
 
 // add client routes here
 app.get(('/'), goHome);
-app.get(('/urhere'), fetchLocation);
+app.get(('/searchresults'), fetchLocation);
 
 // add client-facing function calls here
 function goHome(request,response) {
@@ -129,25 +129,6 @@ function makeLavs (location,lavs) {
   return lavsArray;
 }
 
-function Lavatory(data) {
-  this.lat = data.lat || 47.6062;
-  this.lng = data.lng || -122.3321;
-  this.name = data.name || '';
-  this.vicinity = data.vicinity || '';
-  this.deadoralive = data.deadoralive || 'alive';
-  this.statusreason = data.statusreason || '';
-  this.votestotal = data.votestotal || 0;
-  this.avgtotal = data.avgtotal || 0;
-  this.avgclean = data.avgclean || 0;
-  this.avgeasytofind = data.avgeasytofind || 0;
-  this.notoiletpaper = data.notoiletpaper || false;
-  this.notoiletseatcovers = data.notoiletseatcovers || false;
-  this.genderspecific = data.genderspecific || false;
-  this.restingarea = data.restingarea || false;
-  this.mothersroom = data.mothersroom || false;
-  this.changingstation = data.changingstation || false;
-  this.bidet = data.bidet || false;
-  this.feminineproducts = data.feminineproducts || false;
-  this.homedb = data.homedb || 'api';
-}
+
+
 
