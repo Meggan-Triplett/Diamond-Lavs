@@ -17,9 +17,31 @@
 // FUNCTION:
 
 function updateLav (request,response) {
-  let SQL = 'UPDATE user SET votestotal=$1,avgtotal=$4,avgclean=$5,avgeasytofind=$6,notoiletpaper=$7,notoiletseatcovers=$8,genderspecific=$9,restingarea=$10,mothersroom=$11,changingstation=$12,bidet=$13,feminineproducts=$14 where id=$15;';
-  let {votesTotal,votesClean,votesEasyToFind,avgVotesTotal,avgVotesClean,avgVotesEasyToFind,noToiletPaper,noToiletSeatCovers,genderSpecific,restingArea,mothersRoom,changingStation,bidet,feminineProducts,id} = request.params;
-  let values = [votesTotal,votesClean,votesEasyToFind,avgVotesTotal,avgVotesClean,avgVotesEasyToFind,noToiletPaper,noToiletSeatCovers,genderSpecific,restingArea,mothersRoom,changingStation,bidet,feminineProducts,id];
+  let id = request.params.split('-')[0];
+  let homedb = request.params.split('-')[1];
+  let {voteoverall, voteclean, voteeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts} = request.body;
+
+  let avgtotal = `${(avgtotal*votestotal+voteoverall)/(votestotal+1)}`;
+  let avgclean = `${(avgtotal*votestotal+voteclean)/(votestotal+1)}`;;
+  let avgeasytofind = `${(avgtotal*votestotal+voteeasytofind)/(votestotal+1)}`;
+  notoiletpaper = `${(notoiletpaper/100*votestotal+notoiletpaper)*100}`;
+  notoiletseatcovers = `${(notoiletseatcovers/100*votestotal+$5)*100}`;
+  let votestotal = `${votestotal+1}`;
+
+  let values = [avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers,genderspecific,restingarea,mothersroom,changingstation,bidet,feminineproducts,votestotal,'usertbl','alive',id];
+
+  if  (homedb = 'api'){
+    let SQLadd = `INSERT INTO usertbl SELECT * FROM api WHERE id=$1`
+    let SQLdelete = `DELETE FROM apitbl WHERE id=$1;`;
+    let values = [id];
+    // console.log('', values);
+    client.query(SQLadd, values)
+      .then(client.query(SQLdelete,values)) 
+      .then(() => {
+        let SQLupdate = 'UPDATE userbl SET avgtotal=$1,avgclean=$2,avgeasytofind=$3,notoiletpaper=$4,notoiletseatcovers=$5,genderspecific=$6,restingarea=$7,mothersroom=$8,changingstation=$9,bidet=$10,feminineproducts=$11,votestotal=$12,homedb=$13,deadoralive=$14 where id=$13;';
+        client.query(SQL,values)
+          .then(response.redirect(('/')))
+          .catch(error => handleError(error));
 
   client.query(SQL,values);
 }

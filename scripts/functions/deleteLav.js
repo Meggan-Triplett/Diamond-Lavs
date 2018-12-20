@@ -17,18 +17,20 @@
 
 // FUNCTION:
 function deleteLav(request, response) {
-  if  (request.params.homeDB = 'api'){
+  let id = request.params.split('-')[0];
+  let homedb = request.params.split('-')[1];
+  if  (homedb = 'api'){
     let SQLadd = `INSERT INTO usertbl SELECT * FROM api WHERE id=$1`
     let SQLdelete = `DELETE FROM apitbl WHERE id=$1;`;
-    let values = [request.params.id];
+    let values = [id];
     // console.log('', values);
     client.query(SQLadd, values)
       .then(client.query(SQLdelete,values))
       .then(response.redirect(`/`))
       .catch(error => handleError(error));
   } else {
-    let SQL = 'UPDATE usertbl SET homeDB=$1,deadOrAlive=$2 where id=$3;';
-    let values = ['usertbl','dead',request.params.id];
+    let SQL = 'UPDATE usertbl SET homedb=$1,deadoralive=$2 where id=$3;';
+    let values = ['usertbl','dead',id];
     client.query(SQL,values)
       .then(response.redirect(('/')))
       .catch(error => handleError(error));

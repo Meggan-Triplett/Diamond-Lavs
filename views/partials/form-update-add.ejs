@@ -1,7 +1,8 @@
 <!-- INPUTS: formAction (update, add - from user select) -->
 
-<form id="add-update-form" action="/urhere" method="post" class="hideme">
+<form id="add-update-form" action="" method="post" class="hideme">
   <input id="form-method" type="hidden" name="_method" value="put">
+
 
   <h3>Update the database!</h3>
 
@@ -9,32 +10,32 @@
     <label>Name or Description:
       <input type="text" name="name" placeholder="eg - Cisco bldg">
     </label>
-    <label>Address:
+    <label>Address or vicinity:
       <input type="text" name="vicinity" placeholder="eg - 2901 2nd Ave Seattle">
     </label>
   </fieldset>
 
   <fieldset>
     <label>How would you rate this bathroom overall?
-      <input type="radio" name="voteOverall" value="1">
-      <input type="radio" name="voteOverall" value="2">
-      <input type="radio" name="voteOverall" value="3">
-      <input type="radio" name="voteOverall" value="4">
-      <input type="radio" name="voteOverall" value="5">
+      <input type="radio" name="voteoverall" value="1">
+      <input type="radio" name="voteoverall" value="2">
+      <input type="radio" name="voteoverall" value="3">
+      <input type="radio" name="voteoverall" value="4">
+      <input type="radio" name="voteoverall" value="5">
     </label>
     <label>How clean is it?
-      <input type="radio" name="voteClean" value="1">
-      <input type="radio" name="voteClean" value="2">
-      <input type="radio" name="voteClean" value="3">
-      <input type="radio" name="voteClean" value="4">
-      <input type="radio" name="voteClean" value="5">
+      <input type="radio" name="voteclean" value="1">
+      <input type="radio" name="voteclean" value="2">
+      <input type="radio" name="voteclean" value="3">
+      <input type="radio" name="voteclean" value="4">
+      <input type="radio" name="voteclean" value="5">
     </label>
     <label>How easy was it to find?
-      <input type="radio" name="voteEasyToFind" value="1">
-      <input type="radio" name="voteEasyToFind" value="2">
-      <input type="radio" name="voteEasyToFind" value="3">
-      <input type="radio" name="voteEasyToFind" value="4">
-      <input type="radio" name="voteEasyToFind" value="5">
+      <input type="radio" name="voteeasytofind" value="1">
+      <input type="radio" name="voteeasytofind" value="2">
+      <input type="radio" name="voteeasytofind" value="3">
+      <input type="radio" name="voteeasytofind" value="4">
+      <input type="radio" name="voteeasytofind" value="5">
     </label>
   </fieldset>
   <fieldset>
@@ -69,6 +70,5 @@
   <button>Add/Update Location</button> 
 
   <!-- hidden tags to carry data from client-->
-  <p name="id" value=""></p>
 
 </form>
