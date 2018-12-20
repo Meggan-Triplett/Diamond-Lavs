@@ -263,7 +263,7 @@ function addLav (request,response) {
 
 app.get(('/refreshdb'), (request,response) => {
   console.log('refreshing...');
-  getPlacesAPI()
+  getPlacesAPI(request,response,search_query);
 })
 
 const search_query = {
@@ -275,17 +275,18 @@ const search_query = {
   }]
 };
 
-function getPlacesAPI () {
+function getPlacesAPI (request,response,search_query) {
   fetchAPI(search_query)
     .then( rawData => makeLavsAPI(rawData) )
     .then( lavatories => {
       console.log('lavatories to DB: ',lavatories[0]);
       lavatories.forEach(lavatory => {
-        const SQL = `INSERT INTO apitbl VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);`;
+        const SQL = `INSERT INTO apitbl (lat,lng,name,vicinity,deadoralive,statusreason,votestotal,avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers,genderspecific,restingarea,mothersroom,changingstation,bidet,feminineproducts,homedb) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);`;
         const values = [lavatory.lat, lavatory.lng, lavatory.name, lavatory.vicinity, lavatory.deadoralive, lavatory.statusreason, lavatory.votestotal, lavatory.avgtotal, lavatory.avgclean, lavatory.avgeasytofind, lavatory.notoiletpaper, lavatory.notoiletseatcovers, lavatory.genderspecific, lavatory.restingarea, lavatory.mothersroom, lavatory.changingstation, lavatory.bidet, lavatory.feminineproducts, lavatory.homedb];
         client.query(SQL, values);
       })
     })
+    .then(response.redirect('/'));
 }
 
 
@@ -327,13 +328,13 @@ function Lavatory(data) {
   this.avgtotal = data.avgtotal || 0;
   this.avgclean = data.avgclean || 0;
   this.avgeasytofind = data.avgeasytofind || 0;
-  this.notoiletpaper = data.notoiletpaper || false;
-  this.notoiletseatcovers = data.notoiletseatcovers || false;
+  this.notoiletpaper = data.notoiletpaper || 0;
+  this.notoiletseatcovers = data.notoiletseatcovers || 0;
   this.genderspecific = data.genderspecific || false;
   this.restingarea = data.restingarea || false;
   this.mothersroom = data.mothersroom || false;
   this.changingstation = data.changingstation || false;
   this.bidet = data.bidet || false;
   this.feminineproducts = data.feminineproducts || false;
-  this.homedb = data.homedb || 'api';
+  this.homedb = data.homedb || 'apitbl';
 }
