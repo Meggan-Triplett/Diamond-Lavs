@@ -6,6 +6,8 @@
 // radius will indicate the breadth of the search area
 // keyword will indicate what business/places with known public restrooms that are being search for in that area
 
+const search_query = require('./places-api-query.js');
+
 const search_query = {
   location: [{
     lat: 47.6100898,
@@ -14,3 +16,5 @@ const search_query = {
     keyword: ['starbucks'],
   }]
 };
+
+module.exports = search_query;
