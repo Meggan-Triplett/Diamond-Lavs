@@ -3,11 +3,13 @@
 // user selects a lav from the displayed list
 $('h4.picklav').on('click', function(event) {
   event.preventDefault();
-  
+  console.log('h4.picklav clicked');
+  // hide all forms and details
   $('.details').css('display','none');
   let chosenlav = $(this).attr("id");
-  $(`div#${chosenlav}`).css('display','block');
   $('form').css('display','none');
+  // show details for selected lav
+  $(`div#${chosenlav}`).css('display','block');
 
 });
 
@@ -25,17 +27,20 @@ $('#useradd').on('click', function(event) {
 
 // user selects 'delete' from lav details
 $('.userdelete').on('click', function(event) {
+
   event.preventDefault();
+  console.log('userdelete clicked');
 
   $('.details').css('display','none');
   $('form').css('display','none');
 
   let selected = $(this).parent();
+  $('p[name="id"]').val(selected.attr(`${selected.attr("id")}`));
 
-  $('p[name="id"]').val(selected.attr("id").split('-')[0]);
-  // console.log('id: ', $('p[name="id"]').val());
-  $('p[name="homedb"]').val(selected.attr("id").split('-')[1]);
-  // console.log('homedb: ', $('p[name="homedb"]').val());
+  $('#delete-form').attr('action', `/deleteLav/${selected.attr("id")}`);
+  $('#delete-form').find('[name="form-method"]').val('put');
+  console.log('form: ', $('#delete-form'));
+
   $('#delete-form').css('display','block');
 
 });
@@ -50,20 +55,27 @@ $('.userupdate').on('click', function(event) {
 
   let selected = $(this).parent();
 
+  $('#add-update-form').attr('action', `/updateLav/${selected.attr("id")}`);
+  $('#add-update-form').find('[name="form-method"]').val('put');
+
+  console.log('form: ', $('#add-update-form'));
+
   $('input[name="name"]').val(selected.find('[name="name"]').text());
   $('input[name="vicinity"]').val(selected.find('[name="vicinity"]').text());
-  $('p[name="id"]').val(selected.find('[name="id"]').text());
-  $('p[name="homedb"]').val(selected.find('[name="homedb"]').text());
+  $('input[name="votestotal"]').val(selected.find('[name="votestotal"]').attr("value"));
+  $('input[name="avgtotal"]').val(selected.find('[name="avgtotal"]').text());
+  $('input[name="avgclean"]').val(selected.find('[name="avgclean"]').text());
+  $('input[name="avgeasytofind"]').val(selected.find('[name="avgeasytofind"]').text());
 
+  console.log('avgtotal: ',selected.find('[name="avgtotal"]').text());
   
   let checks = ['genderspecific', 'restingarea', 'mothersroom', 'changingstation', 'bidet', 'feminineproducts'];
 
   checks.forEach( val  => {
     if ( selected.find(`[name="${val}"]`).text() === 'true') {
       $(`input[name="${val}"]`).attr("checked", true);
-    } else if ( !selected.find(`[name="${val}"]`).text() === 'false') {
-      $(`input[name="${val}"]`).attr("checked", false);
     } else {
+      $(`input[name="${val}"]`).attr("checked", false);
     }
     // console.log(`${val}`, $(`input[name="${val}"]`));
   })
