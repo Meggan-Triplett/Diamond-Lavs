@@ -1,11 +1,12 @@
 
-<form id="delete" action="/urhere">
+<form id="delete-form" class="hideme" action="/urhere">
   <input type="hidden" name="_method" value="post">
   <h3>Why would you like to delete this location?</h3>
   <select name="remove-location">
     <option name="closed">This bathroom has been closed permanently.</option>
     <option name="closed-to-public">This bathroom isn't open to the public.</option>
     <option name="does-not-exist">I couldn't find a bathroom here.</option>
+    <h4 class="cancel" class="clickme">Cancel</h4>
     <button>Flush it!</button> 
   </select>
 </form>

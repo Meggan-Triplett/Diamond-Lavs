@@ -7,21 +7,21 @@ CREATE TABLE apitbl (
   lng FLOAT(53),
   name VARCHAR(255),
   vicinity VARCHAR(255),
-  deadOrAlive VARCHAR(255),
-  statusReason VARCHAR(255),
-  votesTotal INTEGER,
-  avgTotal NUMERIC(2,1),
-  avgClean NUMERIC(2,1),
-  avgEasyToFind NUMERIC(2,1),
-  noToiletPaper NUMERIC(3),
-  noToiletSeatCovers NUMERIC(3),
-  genderSpecific BOOLEAN,
-  restingArea BOOLEAN,
-  mothersRoom BOOLEAN,
-  changingStation BOOLEAN,
+  deadoralive VARCHAR(255),
+  statusreason VARCHAR(255),
+  votestotal INTEGER,
+  avgtotal NUMERIC(2,1),
+  avgclean NUMERIC(2,1),
+  avgeasytofind NUMERIC(2,1),
+  notoiletpaper NUMERIC(3),
+  notoiletseatcovers NUMERIC(3),
+  genderspecific BOOLEAN,
+  restingarea BOOLEAN,
+  mothersroom BOOLEAN,
+  changingstation BOOLEAN,
   bidet BOOLEAN,
-  feminineProducts BOOLEAN,
-  homeDB VARCHAR(10)
+  feminineproducts BOOLEAN,
+  homedb VARCHAR(10)
 );
 
 CREATE TABLE usertbl (
@@ -30,24 +30,24 @@ CREATE TABLE usertbl (
   lng FLOAT(53),
   name VARCHAR(255),
   vicinity VARCHAR(255),
-  deadOrAlive VARCHAR(255),
-  statusReason VARCHAR(255),
-  votesTotal INTEGER,
-  avgTotal NUMERIC(2,1),
-  avgClean NUMERIC(2,1),
-  avgEasyToFind NUMERIC(2,1),
-  noToiletPaper NUMERIC(3),
-  noToiletSeatCovers NUMERIC(3),
-  genderSpecific BOOLEAN,
-  restingArea BOOLEAN,
-  mothersRoom BOOLEAN,
-  changingStation BOOLEAN,
+  deadoralive VARCHAR(255),
+  statusreason VARCHAR(255),
+  votestotal INTEGER,
+  avgtotal NUMERIC(2,1),
+  avgclean NUMERIC(2,1),
+  avgeasytofind NUMERIC(2,1),
+  notoiletpaper NUMERIC(3),
+  notoiletseatcovers NUMERIC(3),
+  genderspecific BOOLEAN,
+  restingarea BOOLEAN,
+  mothersroom BOOLEAN,
+  changingstation BOOLEAN,
   bidet BOOLEAN,
-  feminineProducts BOOLEAN,
-  homeDB VARCHAR(10)
+  feminineproducts BOOLEAN,
+  homedb VARCHAR(10)
 );
 
-INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
+INSERT INTO apitbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
   47.6100898,
   -122.3424699,
   'First Starbucks',
@@ -60,16 +60,16 @@ INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTo
   4.1,
   50,
   50,
+  TRUE,
   FALSE,
+  TRUE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  TRUE,
   FALSE,
   'api'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
   47.6102198,
   -122.3424699,
   'Second Starbucks',
@@ -82,16 +82,16 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   4.1,
   80,
   20,
+  TRUE,
   FALSE,
+  TRUE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  TRUE,
   FALSE,
   'user'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
   47.6100998,
   -122.3424699,
   'Third Starbucks',
@@ -104,16 +104,16 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   4.1,
   45,
   25,
+  TRUE,
   FALSE,
+  TRUE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  TRUE,
   FALSE,
   'user'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
   47.6100898,
   -122.3425699,
   'Fourth Starbucks',
@@ -126,16 +126,16 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   4.1,
   70,
   10,
+  TRUE,
   FALSE,
+  TRUE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  TRUE,
   FALSE,
   'user'
 );
 
-INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES (
+INSERT INTO usertbl (lat, lng, name, vicinity, deadoralive, statusreason, votestotal, avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, homedb) VALUES (
   47.6101098,
   -122.3428199,
   'Fifth Starbucks',
@@ -148,11 +148,11 @@ INSERT INTO usertbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesT
   4.1,
   70,
   100,
+  TRUE,
   FALSE,
+  TRUE,
   FALSE,
-  FALSE,
-  FALSE,
-  FALSE,
+  TRUE,
   FALSE,
   'user'
 );

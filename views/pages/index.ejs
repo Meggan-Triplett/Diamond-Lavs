@@ -13,11 +13,13 @@
         <%- include('./../partials/map', {lat: lat, lng: lng}); %>
     <% } else if (pagename === 'searchresults') { %>
         <%- include('./../partials/map', {lat: lat, lng: lng}); %>
-        <% lavs.forEach( lav => { %>
+        <% lavs.forEach( (lav,idx) => { %>
             <%- include('./../partials/details', {lav: lav}); %>
+            <h4 id="<%= lav.id %>" class="picklav clickme">(<%= idx+1 %>)<%= lav.name %></h4>
         <% }) %>
         <%- include('./../partials/form-update-add'); %>
         <%- include('./../partials/form-delete'); %>
+        <h4 id="useradd" class="clickme">Add New Bathroom</h4>
     <% } else if (pagename === 'thanks') { %>
         <%- include('./../partials/thanks'); %>
     <% } else { %>
@@ -27,9 +29,9 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/scripts/app.js"></script> 
-    <script async defer src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!-- <script async defer src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH6erLkHqP8j2oVBdITfX_SKBOAVXU55A&callback=initMap"
-    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDH6erLkHqP8j2oVBdITfX_SKBOAVXU55A&callback=initMap" -->
+    <!-- async defer></script> -->
 </body>
 </html>

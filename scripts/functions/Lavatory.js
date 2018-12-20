@@ -21,23 +21,21 @@ function Lavatory(data) {
   this.lng = data.lng || -122.3321;
   this.name = data.name || '';
   this.vicinity = data.vicinity || '';
-  this.deadOrAlive = data.deadOrAlive || 'alive';
-  this.statusReason = data.statusReason || '';
-  this.votesTotal = data.votesTotal || 0;
-  this.votesClean = data.votesClean || 0;
-  this.votesEasyToFind = data.votesEasyToFind || 0;
-  this.avgVotesTotal = data.avgVotesTotal || 0;
-  this.angVotesClean = data.angVotesClean || 0;
-  this.avgVotesEasyToFind = data.avgVotesEasyToFind || 0;
-  this.noToiletPaper = data.noToiletPaper || false;
-  this.noToiletSeatCovers = data.noToiletSeatCovers || false;
-  this.genderSpecific = data.genderSpecific || false;
-  this.restingArea = data.restingArea || false;
-  this.mothersRoom = data.mothersRoom || false;
-  this.changingStation = data.changingStation || false;
+  this.deadoralive = data.deadoralive || 'alive';
+  this.statusreason = data.statusreason || '';
+  this.votestotal = data.votestotal || 0;
+  this.avgtotal = data.avgtotal || 0;
+  this.avgclean = data.avgclean || 0;
+  this.avgeasytofind = data.avgeasytofind || 0;
+  this.notoiletpaper = data.notoiletpaper || false;
+  this.notoiletseatcovers = data.notoiletseatcovers || false;
+  this.genderspecific = data.genderspecific || false;
+  this.restingarea = data.restingarea || false;
+  this.mothersroom = data.mothersroom || false;
+  this.changingstation = data.changingstation || false;
   this.bidet = data.bidet || false;
-  this.feminineProducts = data.feminineProducts || false;
-  this.homeDB = data.homeDB || 'api';
+  this.feminineproducts = data.feminineproducts || false;
+  this.homedb = data.homedb || 'api';
 }
 
 module.exports = LavatoryConstructor();
