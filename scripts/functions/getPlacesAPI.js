@@ -11,9 +11,10 @@
 
 // DEPENDENCIES:
 // makeLavsAPI.js = creates an array of new Lavatory objects
+// postgres is needed to save to db
 
 // CHANGE LOG:
-// 12-17-2018 4:00am (Meggan) Initial build.  
+// 12-19-2018 4:45pm (Meggan) Initial build.  
 
 
 
@@ -26,15 +27,18 @@ client.on('error', err => console.error(er));
 
 const makeLavsAPI = require('./makeLavsAPI');
 
+makeLavsAPI();
+
 function getPlacesAPI (makeLavsAPI) {
-  makeLavsAPI();
-  save: function() {
-    const SQL = `INSERT INTO apitbl (lat, lng, name, vicinity, deadOrAlive, statusReason, votesTotal, votesClean, avgTotal, avgClean, avgEasyToFind, noToiletPaper, noToiletSeatCovers, genderSpecific, restingArea, mothersRoom, changingStation, bidet, feminineProducts, homeDB) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) ON CONFLICT DO NOTHING RETURNING id;`;
-    const values = [this.lat, this.lng, this.name, this.vicinity, this.deadOrAlive, this.statusReason, this.votesTotal, this.avgTotal, this.avgClean, this.avgEasyToFind, this.noToiletPaper, this.noToiletSeatCovers, this.genderSpecific, this.restingArea, this.mothersRoom, this.changingStation, this.bidet, this.feminineProducts, this.homeDB];
-  
+  save: makeLavsAPI.forEach(lavatory => {
+    const SQL = `INSERT INTO apitbl VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);`;
+    const values = [this.lat, this.lng, this.name, this.vicinity, this.deadoralive, this.statusreason, this.votestotal, this.avgtotal, this.avgclean, this.avgeasytofind, this.notoiletpaper, this.notoiletseatcovers, this.genderspecific, this.restingarea, this.mothersroom, this.changingstation, this.bidet, this.feminineproducts, this.homedb];
+
     client.query(SQL, values);
-  };
+  });
 };
+
+module.exports = getPlacesAPI;
 
 // TEST: (run in server.js to access DB)
 // check if database is populated with new not seed data
