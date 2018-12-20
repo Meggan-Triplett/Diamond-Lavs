@@ -15,7 +15,7 @@
         <%- include('./../partials/map', {lat: lat, lng: lng}); %>
         <% lavs.forEach( (lav,idx) => { %>
             <%- include('./../partials/details', {lav: lav}); %>
-            <h4 id="<%= lav.id %>" class="picklav clickme">(<%= idx+1 %>)<%= lav.name %></h4>
+            <h4 id="<%= lav.id %>-<%= lav.homedb %>" class="picklav clickme">(<%= idx+1 %>)<%= lav.name %></h4>
         <% }) %>
         <%- include('./../partials/form-update-add'); %>
         <%- include('./../partials/form-delete'); %>
