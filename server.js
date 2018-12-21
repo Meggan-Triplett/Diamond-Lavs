@@ -50,8 +50,9 @@ app.put(('/deleteLav/:lav_id'), (request,response) => {  // deleteLav
 
 app.post(('/addLav'), (request,response) => {  // deleteLav
   // console.log('(delete) request.params: ',request.params);
-  // console.log('(delete) request.query: ',request.body);
-  addLav(request,response);
+  console.log('(delete) request.query: ',request.body);
+  fetchNewLocation(request.body.vicinity,response)
+  .then( results => addLav(request,response,results));
 });
 
 // add client-facing function calls here
@@ -73,6 +74,25 @@ function handleError (error,response) {
 
 
 // FUNCTIONS
+function fetchNewLocation (vicinity,response) {
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${vicinity}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
+  // console.log('query = ',request.query.address);
+  return superagent.get(url)
+    .then( apiData => {
+      // if no data: throw error
+      if (!apiData.body.results.length) {
+        throw 'No Data from API'
+        // if data: save, send to front
+      } else {
+        let location = {lat: apiData.body.results[0].geometry.location.lat, lng: apiData.body.results[0].geometry.location.lng};
+        console.log(`location: lat = ${location.lat}; location:lng = ${location.lng}`);
+        return location;
+      }
+    })
+    .catch( error => handleError(error,response)); // un-comment before running
+}
+
+
 function fetchLocation (request,response) {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.address}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
   // console.log('query = ',request.query.address);
@@ -97,7 +117,7 @@ function getLavs (location, response) {
   // get local results and put 
   lookup(location, radius, response)
     .then(results => {
-      console.log('(getLavs) lookup results: ', results.rows);
+      // console.log('(getLavs) lookup results: ', results.rows);
       lavs = makeLavs(location,results.rows); // for testing constructor
       return lavs;
     })
@@ -127,7 +147,7 @@ function makeLavs (location,lavs) {
   console.log('inside makeLavs', lavs.length);
   lavs.sort((a,b) => {
     let distance = (val) => {
-      console.log('val: ',val);
+      // console.log('val: ',val);
       let x = parseFloat(location.lat) - val.lat;
       let y = parseFloat(location.lng) - val.lng;
       return Math.sqrt(x*x + y*y);
@@ -135,7 +155,7 @@ function makeLavs (location,lavs) {
     return distance(a) - distance(b);
   });
   let lavsArray = lavs.slice(0,5); // TODO: replace 8 with 5
-  console.log('(makeLavs) lavsArray = ', lavsArray);
+  console.log('(makeLavs) lavsArray.length = ', lavsArray.length);
   return lavsArray;
 }
 
@@ -170,7 +190,7 @@ function updateLav (request,response) {
   client.query(SQLgrab)
     .then ( results => {
       let grabbed = results.rows[0];
-      console.log('(SQLgrab) grabbed: ',grabbed);
+      // console.log('(SQLgrab) grabbed: ',grabbed);
       
       // parse stringified numbers before calcs
       grabbed.avgtotal = parseFloat(grabbed.avgtotal);
@@ -201,10 +221,10 @@ function updateLav (request,response) {
       let valuesupdate = [avgtotal, avgclean, avgeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts, votestotal, homedb, deadoralive, id, name, vicinity];
       if  (whichdb === 'apitbl'){
         let SQLpull = `SELECT * FROM apitbl WHERE id=${id}`;
-        console.log(`LN215: SQLpull = ${SQLpull}`);
+        // console.log(`LN215: SQLpull = ${SQLpull}`);
         client.query(SQLpull)
           .then( results => {
-            console.log('SQLpull results: ',results.rows)
+            // console.log('SQLpull results: ',results.rows)
             let {lat,lng,statusreason,votestotal} = results.rows[0];
             let values = [lat,lng,statusreason,votestotal,'usertbl'];
             let SQLadd = `INSERT INTO usertbl (lat,lng,statusreason,votestotal,homedb) VALUES ($1,$2,$3,$4,$5) returning id`;
@@ -222,8 +242,8 @@ function updateLav (request,response) {
               .catch(error => handleError(error));
           })
       } else {
-        console.log(`SQLupate: ${SQLupdate}`);
-        console.log(`valuesupdate: `,valuesupdate);
+        // console.log(`SQLupate: ${SQLupdate}`);
+        // console.log(`valuesupdate: `,valuesupdate);
         client.query(SQLupdate,valuesupdate)
           .then(response.redirect(('/')))
           .catch(error => handleError(error));
@@ -232,7 +252,8 @@ function updateLav (request,response) {
     .catch(error => handleError(error));
 }
 
-function addLav (request,response) {
+function addLav (request,response,latLng) {
+  console.log('(addLav) latLng: ',latLng);
   let {name,vicinity,voteoverall, voteclean, voteeasytofind, notoiletpaper, notoiletseatcovers, genderspecific, restingarea, mothersroom, changingstation, bidet, feminineproducts} = request.body;
 
   let avgtotal = voteoverall;
@@ -241,11 +262,16 @@ function addLav (request,response) {
   notoiletpaper = notoiletpaper ? 100 : 0;
   notoiletseatcovers = notoiletseatcovers ? 100 : 0;
   let votestotal = 1;
+  let lat = latLng.lat;
+  let lng = latLng.lng;
 
-  let values = [name,vicinity,avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers,genderspecific,restingarea,mothersroom,changingstation,bidet,feminineproducts,votestotal,'usertbl','alive'];
-  let SQL = 'INSERT INTO usertbl (name,vicinity,avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers,genderspecific,restingarea,mothersroom,changingstation,bidet,feminineproducts,votestotal,homedb,deadoralive) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16) returning id;';
+  let values = [name,vicinity,avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers,genderspecific,restingarea,mothersroom,changingstation,bidet,feminineproducts,votestotal,'usertbl','alive',lat,lng];
+  let SQL = 'INSERT INTO usertbl (name,vicinity,avgtotal,avgclean,avgeasytofind,notoiletpaper,notoiletseatcovers,genderspecific,restingarea,mothersroom,changingstation,bidet,feminineproducts,votestotal,homedb,deadoralive,lat,lng) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18) returning id;';
 
   client.query(SQL,values)
+    .then(results => {
+      console.log('(addLav) results: ', results);
+    })
     .then(response.redirect(('/')))
     .catch(error => handleError(error));
 }
