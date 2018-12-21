@@ -5,3 +5,21 @@
 .showme {
   display: block;
 }
+
+
+header {
+  width: 100%;
+  padding: 5vw auto;
+}
+
+form, .details {
+  margin: 20px auto;
+}
+
+#mylat, #mylng {
+  display: none;
+}
+
+form .details {
+  margin: 20px;
+}

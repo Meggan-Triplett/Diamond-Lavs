@@ -1,6 +1,60 @@
-body {
-  background-color: lightskyblue;
-  color: navy;
+* {
   font-family: 'Doppio One', sans-serif;
+  color: rgb(2, 2, 88);
+
+}
+
+body {
+  background-color: rgb(157, 184, 202);
+  color: rgb(2, 2, 88);
+  font-family: 'Doppio One', sans-serif;
+}
+
+h2,h3,h4,h5,h6,a,p {
+  padding: 5px;
+}
+
+h2 {
+  font-size: 5vw;
+}
+h3, a {
+  font-size: 4.5vw;
+}
+h4, button {
+  font-size: 4.25vw;
+}
+h5 {
+  font-size: 4vw;
+}
+h6, p {
+  font-size: 4vw;
+}
+
+
+@media screen and (min-width: 760px) {
+  h2,h3,h4,h5,h6,a,p {
+    padding: 5px;
+  }
+  
+  h2 {
+    font-size: 42px;
+  }
+  h3, a {
+    font-size: 36px;
+  }
+  h4, button {
+    font-size: 28px;
+  }
+  h5 {
+    font-size: 20px;
+  }
+  h6, p {
+    font-size: 16px;
+  }
+
+.clickme, button {
+  font-size: 28px;
+
+}
 }
 

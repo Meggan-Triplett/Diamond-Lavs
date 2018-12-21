@@ -1,0 +1,35 @@
+.checkbox input {
+  width: 10%;
+}
+
+.checkbox label {
+  width: 95%;
+}
+
+.radio input {
+  width: 5%;
+}
+
+label,fieldset {
+  width: 100%;
+  margin: 5px 10px;
+}
+
+
+form h3, form h4 {
+  margin: 0px;
+  font-style: oblique;
+  background-color: rgba(255, 255, 255, 0.582);
+}
+
+select {
+  width: 90%;
+  margin: 10px auto;
+  /* font-size: 4vw; */
+}
+
+@media screen and (min-width: 760px) {
+  button, select {
+    /* font-size: 28px; */
+  }
+}

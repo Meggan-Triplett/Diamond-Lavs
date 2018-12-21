@@ -6,12 +6,22 @@ $('h4.picklav').on('click', function(event) {
   console.log('h4.picklav clicked');
   // hide all forms and details
   $('.details').css('display','none');
+  $('.picklav').css('display','none');
+  $('#useradd').css('display','none');
   let chosenlav = $(this).attr("id");
   $('form').css('display','none');
   // show details for selected lav
   $(`div#${chosenlav}`).css('display','block');
 
 });
+
+$('.cancel'). on('click', function(event) {
+  event.preventDefault();
+  $('.details').css('display','none');
+  $('.picklav').css('display','block');
+  $('#useradd').css('display','block');
+  $('form').css('display','none');
+})
 
 // user selects 'delete' from lav details
 $('.userdelete').on('click', function(event) {
@@ -92,43 +102,50 @@ $('.userupdate').on('click', function(event) {
 
 
 // draw map
-var lavs = [ ['',0,0],['',0,0],['',0,0],['',0,0],['',0,0] ];
-
-for (var i = 0; i<5; i++) {
-  lavs[i][0] = $(`.details:eq(${i})`).find('[name="name"]').text();
-  lavs[i][1] = parseFloat($(`.details:eq(${i})`).find('[name="lat"]').attr("value"));
-  lavs[i][2] = parseFloat($(`.details:eq(${i})`).find('[name="lng"]').attr("value"));
-}
 console.log('lavs: ',lavs);
 
 
 function initMap() {
-  
-  console.log('lavs[0].lat: ',lavs[0][1]);
-  var mylocation = {lat: parseFloat($('#mylat').text()), lng: parseFloat($('#mylng').text()) }
 
+  // set user location for center map pin
+  var mylocation = {lat: parseFloat($('#mylat').text()), lng: parseFloat($('#mylng').text()) }
+  console.log('mylocation: ', mylocation);
+  // set lav locations for map pins
+  var lavs = [ ['',0,0],['',0,0],['',0,0],['',0,0],['',0,0] ];
+  for (var i = 0; i<5; i++) {
+    lavs[i][0] = $(`.details:eq(${i})`).find('[name="name"]').text();
+    lavs[i][1] = parseFloat($(`.details:eq(${i})`).find('[name="lat"]').attr("value"));
+    lavs[i][2] = parseFloat($(`.details:eq(${i})`).find('[name="lng"]').attr("value"));
+  }
+  console.log('lavs[0].lat: ',lavs[0][1]);
+  
+  // build map
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: new google.maps.LatLng(mylocation.lat, mylocation.lng),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(mylocation.lat, mylocation.lng),
+    map: map
+  });
   
+  // build/set pins
   var infowindow = new google.maps.InfoWindow();
-  
   var marker;
-  
-  for (var i = 0; i < lavs.length; i++) {
+  for (var j = 0; j < lavs.length; j++) {
     marker = new google.maps.Marker({
-      position: new google.maps.LatLng(lavs[i][1], lavs[i][2]),
+      position: new google.maps.LatLng(lavs[j][1], lavs[j][2]),
       map: map
     });
 
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    google.maps.event.addListener(marker, 'click', (function(marker, j) {
       return function() {
-        infowindow.setContent(lavs[i][0]);
+        infowindow.setContent(lavs[j][0]);
         infowindow.open(map, marker);
       }
-    })(marker, i));
+    })(marker, j));
   }
 
 }
