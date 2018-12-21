@@ -13,8 +13,6 @@ $('h4.picklav').on('click', function(event) {
 
 });
 
-
-
 // user selects 'delete' from lav details
 $('.userdelete').on('click', function(event) {
 
@@ -91,5 +89,51 @@ $('.userupdate').on('click', function(event) {
   $('#add-update-form').css('display','block');
 
 })
+
+
+// draw map
+var lavs = [ ['',0,0],['',0,0],['',0,0],['',0,0],['',0,0] ];
+
+for (var i = 0; i<5; i++) {
+  lavs[i][0] = $(`.details:eq(${i})`).find('[name="name"]').text();
+  lavs[i][1] = parseFloat($(`.details:eq(${i})`).find('[name="lat"]').attr("value"));
+  lavs[i][2] = parseFloat($(`.details:eq(${i})`).find('[name="lng"]').attr("value"));
+}
+console.log('lavs: ',lavs);
+
+
+function initMap() {
+  
+  console.log('lavs[0].lat: ',lavs[0][1]);
+  var mylocation = {lat: parseFloat($('#mylat').text()), lng: parseFloat($('#mylng').text()) }
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: new google.maps.LatLng(mylocation.lat, mylocation.lng),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  var infowindow = new google.maps.InfoWindow();
+  
+  var marker;
+  
+  for (var i = 0; i < lavs.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lavs[i][1], lavs[i][2]),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(lavs[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+
+}
+
+
+
 
 

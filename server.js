@@ -105,7 +105,7 @@ function fetchLocation (request,response) {
 
 function getLavs (location, response) {
   let lavs = []; // array to hold final array of 5 lav objects
-  let radius ={lat: 1, lng: 1}; // {lat: .00362, lng: .00534};
+  let radius ={lat: .0005, lng: .0005}; // {lat: .00362, lng: .00534};
   // get local results and put 
   lookup(location, radius, response)
     .then(results => {
@@ -145,7 +145,7 @@ function makeLavs (location,lavs) {
     };
     return distance(a) - distance(b);
   });
-  let lavsArray = lavs.slice(0,8); // TODO: replace 8 with 5
+  let lavsArray = lavs.slice(0,5); // TODO: replace 8 with 5
   // console.log('(makeLavs) lavsArray = ', lavsArray);
   return lavsArray;
 }
@@ -294,7 +294,6 @@ function getPlacesAPI (request,response,search_query) {
     .then(response.redirect('/'));
 }
 
-
 function fetchAPI (search_query) {
   console.log('search_query: ',search_query);
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${search_query.location[0].lat},${search_query.location[0].lng}&radius=${search_query.location[0].radius}&keyword=${search_query.location[0].keyword}&key=${process.env.GEOCODE_API_KEY}`;
@@ -307,8 +306,6 @@ function fetchAPI (search_query) {
     .catch( error => handleError(error));
 }
 
-
-
 function makeLavsAPI (rawData) {
   let lavatories = [];
   rawData.forEach(location => {
@@ -318,13 +315,9 @@ function makeLavsAPI (rawData) {
   return lavatories;
 }
 
-
-
-
-
 function Lavatory(data) {
-  this.lat = data.lat || 47.6062;
-  this.lng = data.lng || -122.3321;
+  this.lat = data.geometry.location.lat || 47.6062;
+  this.lng = data.geometry.location.lng || -122.3321;
   this.name = data.name || '';
   this.vicinity = data.vicinity || '';
   this.deadoralive = data.deadoralive || 'alive';
@@ -343,3 +336,4 @@ function Lavatory(data) {
   this.feminineproducts = data.feminineproducts || false;
   this.homedb = data.homedb || 'apitbl';
 }
+
