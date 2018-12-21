@@ -34,3 +34,6 @@ A list of any libraries, frameworks, or packages that your application requires 
 Instructions that the user may need to follow in order to get your application up and running on their own computer
 Clearly defined API endpoints with sample responses
 Clearly defined database schemas --> 
+## Resources  
+
+Utilized https://www.w3schools.com/ for CSS examples and resources.
