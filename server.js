@@ -32,15 +32,6 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
-// set external function references
-// const fetchLocation = require('./scripts/functions/fetchLocation');
-// const addLav = require('./scripts/functions/addLav');
-// const Lavatory = require('./scripts/functions/Lavatory');
-// const lookup = require('./scripts/functions/lookup');
-// const makeLavs = require('./scripts/functions/makeLavs');
-// const updateLav = require('./scripts/functions/updateLav');
-// const whereIsLavData = require('./scripts/functions/whereIsLavData');
-
 // add client routes here
 app.get(('/'), goHome);
 app.get(('/searchresults'), fetchLocation);
@@ -68,12 +59,6 @@ function goHome(request,response) {
   response.render(('./pages/index'),{ pagename: 'home' });
 }
 
-// add route for DB refresh here
-
-// add DB refresh function calls here
-
-
-
 
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
@@ -84,7 +69,10 @@ function handleError (error,response) {
   // response.redirect('/error');
 }
 
-// SANDBOX
+
+
+
+// FUNCTIONS
 function fetchLocation (request,response) {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${request.query.address}&key=${process.env.GEOCODE_API_KEY}`; // hard-code API key to test
   // console.log('query = ',request.query.address);
@@ -279,7 +267,7 @@ app.get(('/refreshdb'), (request,response) => {
 // radius will indicate the breadth of the search area
 // keyword will indicate what business/places with known public restrooms that are being search for in that area
 
-const search_query = require('./places-api-query.js');
+// const search_query = require('./places-api-query.js');
 
 const search_query = {
   location: [
@@ -417,4 +405,16 @@ function Lavatory(data) {
   this.feminineproducts = data.feminineproducts || false;
   this.homedb = data.homedb || 'apitbl';
 }
+
+
+
+
+// set external function references
+// const fetchLocation = require('./scripts/functions/fetchLocation');
+// const addLav = require('./scripts/functions/addLav');
+// const Lavatory = require('./scripts/functions/Lavatory');
+// const lookup = require('./scripts/functions/lookup');
+// const makeLavs = require('./scripts/functions/makeLavs');
+// const updateLav = require('./scripts/functions/updateLav');
+// const whereIsLavData = require('./scripts/functions/whereIsLavData');
 

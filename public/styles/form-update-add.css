@@ -1,0 +1,36 @@
+.checkbox input {
+  width: 10%;
+}
+
+.checkbox label {
+  width: 95%;
+}
+
+.radio input {
+  width: 5%;
+}
+
+label,fieldset {
+  width: 100%;
+  margin: 5px 10px;
+}
+
+h3,h4 {
+  margin: 0px;
+  font-size: 4.5vw;
+  font-style: oblique;
+  background-color: rgba(255, 255, 255, 0.582);
+}
+
+button {
+  font-size: 4.5vw;
+  display: block;
+  padding: 10px;
+  margin: 5px auto;
+  background-color: white;
+  border-radius: 10px;
+  width: 96%;
+  text-align: center;
+  border:  2px solid rgb(2, 2, 88);
+  font-style: oblique;
+}

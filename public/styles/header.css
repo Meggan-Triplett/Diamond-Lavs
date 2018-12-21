@@ -1,41 +1,46 @@
 header {
-    width: 100%;
-    height: 10vw;;
-    background-color:lightskyblue;
-    font-size: 3vw;
-    padding-top: 5vw;
+    height: 140px;
     text-align: center;
   }
 
-  img{
-    width: 14%;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-  }
-
-#img2{
-    width: 14%;
-    position: absolute;
-    top: 0%;
-    left: 86%;
+header>img{
+  position: absolute;
+  width: 75px;
+  top: 5px;
 }
 
+#img1{
+    left: 5px;
+}
+#img2{
+    right: 5px;
+}
+
+h1 {
+  position: relative;
+  top: 50px;
+  font-size: 7vw;
+  font-family: 'Sonsie One', cursive;
+  font-family: 'Uncial Antiqua', cursive;
+  text-align: center;
+  text-shadow: -1.5px -1.5px 0 white, 1.5px -1.5px 0 white, -1.5px 1px 0 white, 1.5px 1.5px 0 white;
+  margin: 0px auto;
+}
+
+.topnav {
+  width: 100%;
+  position: absolute;
+  /* text-align: center; */
+  top: 105px;
+}
+
+
 a:link {
-    text-decoration: none;
+  display: inline-block;
+  text-decoration: none;
+  width: 28%;
   }
-  .topnav {
-    position: relative;
-    top: 14%;
-    left: 0%;
-  }
-  #uncial{
-    font-size: 7vw;
-    /* font-family: 'Sonsie One', cursive; */
-    font-family: 'Uncial Antiqua', cursive;
-    text-align: center;
-    text-shadow: -1.5px -1.5px 0 white, 1.5px -1.5px 0 white, -1.5px 1px 0 white, 1.5px 1.5px 0 white;
-    position: relative;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
+
+  a:visited {
+    color: rgb(2, 2, 88);
   }

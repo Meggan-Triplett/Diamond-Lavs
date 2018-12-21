@@ -1,6 +1,26 @@
 body {
-  background-color: lightskyblue;
-  color: navy;
+  background-color: rgb(157, 184, 202);
+  color: rgb(2, 2, 88);
   font-family: 'Doppio One', sans-serif;
+}
+
+h2,h3,h4,h5,h6,a,p {
+  padding: 5px;
+}
+
+h2 {
+  font-size: 5vw;
+}
+h3, a {
+  font-size: 4.5vw;
+}
+h4, button {
+  font-size: 4.25vw;
+}
+h5 {
+  font-size: 4vw;
+}
+h6, p {
+  font-size: 4vw;
 }
 

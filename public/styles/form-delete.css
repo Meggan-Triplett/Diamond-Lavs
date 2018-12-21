@@ -1,0 +1,29 @@
+button {
+  font-size: 4.5vw;
+  display: block;
+  padding: 10px;
+  margin: 5px auto;
+  background-color: white;
+  border-radius: 10px;
+  width: 96%;
+  text-align: center;
+  border:  2px solid rgb(2, 2, 88);
+  font-style: oblique;
+
+}
+
+#clickme {
+  padding: 10px;
+  margin: 5px auto;
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  text-align: center;
+  border:  2px solid rgb(2, 2, 88);
+}
+
+select {
+  width: 90%;
+  margin: 10px auto;
+  font-size: 4vw;
+}
