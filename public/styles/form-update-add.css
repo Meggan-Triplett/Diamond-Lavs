@@ -15,22 +15,21 @@ label,fieldset {
   margin: 5px 10px;
 }
 
-h3,h4 {
+
+form h3, form h4 {
   margin: 0px;
-  font-size: 4.5vw;
   font-style: oblique;
   background-color: rgba(255, 255, 255, 0.582);
 }
 
-button {
-  font-size: 4.5vw;
-  display: block;
-  padding: 10px;
-  margin: 5px auto;
-  background-color: white;
-  border-radius: 10px;
-  width: 96%;
-  text-align: center;
-  border:  2px solid rgb(2, 2, 88);
-  font-style: oblique;
+select {
+  width: 90%;
+  margin: 10px auto;
+  /* font-size: 4vw; */
+}
+
+@media screen and (min-width: 760px) {
+  button, select {
+    /* font-size: 28px; */
+  }
 }

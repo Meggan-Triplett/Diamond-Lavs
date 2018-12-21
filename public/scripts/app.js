@@ -109,7 +109,7 @@ function initMap() {
 
   // set user location for center map pin
   var mylocation = {lat: parseFloat($('#mylat').text()), lng: parseFloat($('#mylng').text()) }
-  
+  console.log('mylocation: ', mylocation);
   // set lav locations for map pins
   var lavs = [ ['',0,0],['',0,0],['',0,0],['',0,0],['',0,0] ];
   for (var i = 0; i<5; i++) {
@@ -124,6 +124,11 @@ function initMap() {
     zoom: 16,
     center: new google.maps.LatLng(mylocation.lat, mylocation.lng),
     mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(mylocation.lat, mylocation.lng),
+    map: map
   });
   
   // build/set pins

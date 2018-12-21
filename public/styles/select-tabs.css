@@ -9,7 +9,6 @@
 }
 
 button {
-  font-size: 4.5vw;
   display: block;
   padding: 10px;
   margin: 5px auto;
@@ -18,4 +17,36 @@ button {
   width: 90%;
   text-align: center;
   border:  2px solid rgb(2, 2, 88);
+  font-style: oblique;
 }
+
+
+@media screen and (min-width: 760px) {
+  
+  .clickme, button {
+    /* font-size: 28px; */
+    /* max-width: 18%;
+    display: inline-block; */
+    max-width: 50%;
+  }
+  .picklav {
+    /* font-size: 28px; */
+    max-width: 18%;
+    display: inline-block;
+  }
+  
+  #useradd {
+    max-width: 96%;
+    display: block;
+    margin: 20px auto;
+    height: 50px;
+    display: block;
+    line-height: 50px;
+  }
+
+  #userupdate, #userdelete, #cancel, #useradd {
+    max-width: 30%;
+    display: block;
+  }
+}
+

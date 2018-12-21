@@ -124,17 +124,18 @@ function lookup (latLng, radius, response) {
 }
 
 function makeLavs (location,lavs) {
-  console.log('inside makeLavs');
+  console.log('inside makeLavs', lavs.length);
   lavs.sort((a,b) => {
     let distance = (val) => {
-      let x = location.lat - val.lat;
-      let y = location.lng - val.lng;
+      console.log('val: ',val);
+      let x = parseFloat(location.lat) - val.lat;
+      let y = parseFloat(location.lng) - val.lng;
       return Math.sqrt(x*x + y*y);
     };
     return distance(a) - distance(b);
   });
   let lavsArray = lavs.slice(0,5); // TODO: replace 8 with 5
-  // console.log('(makeLavs) lavsArray = ', lavsArray);
+  console.log('(makeLavs) lavsArray = ', lavsArray);
   return lavsArray;
 }
 
@@ -254,23 +255,11 @@ function addLav (request,response) {
 
 // REFRESH SANDBOX
 
-app.get(('/refreshdb'), (request,response) => {
-  console.log('refreshing...');
-  getPlacesAPI(request,response,search_query);
-})
-
-'use strict';
-
-// This is the object that gets used to feed the query parameters for the Google Places API
-// These key value pairs will go on to populate the API DB in the getPlacesAPI function
-// lat/lng should indicate which centerpoint (ideally which neighborhood) to run a search of restrooms for 
-// radius will indicate the breadth of the search area
-// keyword will indicate what business/places with known public restrooms that are being search for in that area
-
-// const search_query = require('./places-api-query.js');
-
-const search_query = {
+let centerpoints = {
   location: [
+    // 47.6100898,-122.3424699
+    {lat: 47.6100898, lng: -122.3424699, radius: 2000, keyword: ['starbucks']},
+    {lat: 47.6100898, lng: -122.3424699, radius: 2000, keyword: ['mcdonald\'s']},
     // 47.647869,-122.398027
     {lat: 47.647869, lng: -122.398027, radius: 2000, keyword: ['starbucks']},
     {lat: 47.647869, lng: -122.398027, radius: 2000, keyword: ['mcdonald\'s']},
@@ -349,6 +338,24 @@ const search_query = {
   ]
 };
 
+app.get(('/refreshdb'), (request,response) => {
+  console.log('refreshing...');
+  centerpoints.location.forEach ( centerpoint => {
+    getPlacesAPI(request,response,centerpoint);
+  });
+})
+
+'use strict';
+
+// This is the object that gets used to feed the query parameters for the Google Places API
+// These key value pairs will go on to populate the API DB in the getPlacesAPI function
+// lat/lng should indicate which centerpoint (ideally which neighborhood) to run a search of restrooms for 
+// radius will indicate the breadth of the search area
+// keyword will indicate what business/places with known public restrooms that are being search for in that area
+
+// const search_query = require('./places-api-query.js');
+
+
 function getPlacesAPI (request,response,search_query) {
   fetchAPI(search_query)
     .then( rawData => makeLavsAPI(rawData) )
@@ -365,7 +372,7 @@ function getPlacesAPI (request,response,search_query) {
 
 function fetchAPI (search_query) {
   console.log('search_query: ',search_query);
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${search_query.location[0].lat},${search_query.location[0].lng}&radius=${search_query.location[0].radius}&keyword=${search_query.location[0].keyword}&key=${process.env.GEOCODE_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${search_query.lat},${search_query.lng}&radius=${search_query.radius}&keyword=${search_query.keyword}&key=${process.env.GEOCODE_API_KEY}`;
   console.log('url: ',url);
   return superagent.get(url)
     .then ( apiData => {

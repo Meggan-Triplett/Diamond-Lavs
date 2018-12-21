@@ -30,7 +30,6 @@ h1 {
 .topnav {
   width: 100%;
   position: absolute;
-  /* text-align: center; */
   top: 105px;
 }
 
@@ -38,9 +37,37 @@ h1 {
 a:link {
   display: inline-block;
   text-decoration: none;
-  width: 28%;
+  width: 25%;
   }
 
   a:visited {
     color: rgb(2, 2, 88);
   }
+
+@media screen and (min-width: 760px) {
+  header {
+    height: 220px;
+  }
+
+  header>img{
+    width: 150px;
+    top: 20px;
+  }
+  
+  #img1{
+      left: 20px;
+  }
+  #img2{
+      right: 20px;
+  }
+  
+  h1 {
+    top: 50px;
+    font-size: 85px;
+  }
+  
+  .topnav {
+    top: 155px;
+  }
+  
+}
