@@ -72,7 +72,19 @@ Dependencies:
 
 
 ## Change Log
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
+12-15-2018 1:45pm - Added user stories and planning phase docs in wip
+12-16-2018 11:15am - Added architecture and wireframes
+12-17-2018 1:15pm - Scripts and partials directories built out. Planning phase docs completed. Basic server running with needed dependencies all added. Lavatory constructor created. Heroku set up.
+12-17-2018 6:15pm - EJS partials built out. SQL database set up, Lavtory constructor adjusted to accept correct data types. Buttons added for ui. Functions to call geocode API return results and find closest bathrooms in comparasion to user location: fetchLocation, lookup, getLavs and makeLavs added. 
+12-18-2018 1:15pm - Updated EJS partials, add get/ route to render home page, render map with user current location search, updated db structure and added seed data. 
+12-18-2018 6:15pm - fetchAPI to call Places API added. Updated server.js to run all existing functions. Updated all existing functions due to issue with datatypes used in db.
+12-19-2018 1:15pm  - Function makeLavsAPI added to use Lavatory constructor to structure raw data form the Places API. Updated .ejs and DB columns to reflect only necessary data.
+12-19-2018 6:15pm - Base deleteLav function created. Base getPlacesAPI to populate lavatory locations. Wired all front in files to properly render. 
+12-20-2018 1:15pm - Updated add update and delete functions. Fonts added to front end. Added location pins to map. Fixed the refreshdb to run a local database refresh. Basic styling added.
+12-20-2018 6:15pm - Fixed database logic issues with all functions that used the Places API. Corrected datatype issues when moving lavatory data from apitbl to usertbl. Added query parameters to generate all seed locations for the apitbl.
+12-21-2018 - Finalized css styles. Added loop to run all Places API queries. Fixed addLav retrival issue.
+
+
 
 ## Credits and Collaborations
 This application is a the result of a collaborative effort by:
@@ -81,8 +93,238 @@ Guru Batth - https://github.com/GurinderB
 Meggan Triplett - https://github.com/Megga-Miister
 Gwen Zubatch - https://github.com/GwennyB
 
-<!-- 
-Clearly defined API endpoints with sample responses
+<!-- <!-- 
+Clearly defined API endpoints with sample responses -->
 ## Resources  
 
+Google GeoCoding API: https://developers.google.com/maps/documentation/geocoding/intro
+  Sample Geocoding Request: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&    key=YOUR_API_KEY
+
+  Sample Geocoding Response: {
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "1600",
+               "short_name" : "1600",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Amphitheatre Pkwy",
+               "short_name" : "Amphitheatre Pkwy",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Mountain View",
+               "short_name" : "Mountain View",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Santa Clara County",
+               "short_name" : "Santa Clara County",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "California",
+               "short_name" : "CA",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "94043",
+               "short_name" : "94043",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.4224764,
+               "lng" : -122.0842499
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 37.4238253802915,
+                  "lng" : -122.0829009197085
+               },
+               "southwest" : {
+                  "lat" : 37.4211274197085,
+                  "lng" : -122.0855988802915
+               }
+            }
+         },
+         "place_id" : "ChIJ2eUgeAK6j4ARbn5u_wAGqWA",
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}
+
+Google Places API: https://developers.google.com/places/web-service/search
+  Sample Nearby Search Request: https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY
+  Sample Nearby Search Response: {
+   "html_attributions" : [],
+   "results" : [
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : -33.870775,
+               "lng" : 151.199025
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/travel_agent-71.png",
+         "id" : "21a0b251c9b8392186142c798263e289fe45b4aa",
+         "name" : "Rhythmboat Cruises",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 270,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAAF-LjFR1ZV93eawe1cU_3QNMCNmaGkowY7CnOf-kcNmPhNnPEG9W979jOuJJ1sGr75rhD5hqKzjD8vbMbSsRnq_Ni3ZIGfY6hKWmsOf3qHKJInkm4h55lzvLAXJVc-Rr4kI9O1tmIblblUpg2oqoq8RIQRMQJhFsTr5s9haxQ07EQHxoUO0ICubVFGYfJiMUPor1GnIWb5i8",
+               "width" : 519
+            }
+         ],
+         "place_id" : "ChIJyWEHuEmuEmsRm9hTkapTCrk",
+         "scope" : "GOOGLE",
+         "alt_ids" : [
+            {
+               "place_id" : "D9iJyWEHuEmuEmsRm9hTkapTCrk",
+               "scope" : "APP"
+            }
+         ],
+         "reference" : "CoQBdQAAAFSiijw5-cAV68xdf2O18pKIZ0seJh03u9h9wk_lEdG-cP1dWvp_QGS4SNCBMk_fB06YRsfMrNkINtPez22p5lRIlj5ty_HmcNwcl6GZXbD2RdXsVfLYlQwnZQcnu7ihkjZp_2gk1-fWXql3GQ8-1BEGwgCxG-eaSnIJIBPuIpihEhAY1WYdxPvOWsPnb2-nGb6QGhTipN0lgaLpQTnkcMeAIEvCsSa0Ww",
+         "types" : [ "travel_agency", "restaurant", "food", "establishment" ],
+         "vicinity" : "Pyrmont Bay Wharf Darling Dr, Sydney"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : -33.866891,
+               "lng" : 151.200814
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "45a27fd8d56c56dc62afc9b49e1d850440d5c403",
+         "name" : "Private Charter Sydney Habour Cruise",
+         "photos" : [
+            {
+               "height" : 426,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAAL3n0Zu3U6fseyPl8URGKD49aGB2Wka7CKDZfamoGX2ZTLMBYgTUshjr-MXc0_O2BbvlUAZWtQTBHUVZ-5Sxb1-P-VX2Fx0sZF87q-9vUt19VDwQQmAX_mjQe7UWmU5lJGCOXSgxp2fu1b5VR_PF31RIQTKZLfqm8TA1eynnN4M1XShoU8adzJCcOWK0er14h8SqOIDZctvU",
+               "width" : 640
+            }
+         ],
+         "place_id" : "ChIJqwS6fjiuEmsRJAMiOY9MSms",
+         "scope" : "GOOGLE",
+         "reference" : "CpQBhgAAAFN27qR_t5oSDKPUzjQIeQa3lrRpFTm5alW3ZYbMFm8k10ETbISfK9S1nwcJVfrP-bjra7NSPuhaRulxoonSPQklDyB-xGvcJncq6qDXIUQ3hlI-bx4AxYckAOX74LkupHq7bcaREgrSBE-U6GbA1C3U7I-HnweO4IPtztSEcgW09y03v1hgHzL8xSDElmkQtRIQzLbyBfj3e0FhJzABXjM2QBoUE2EnL-DzWrzpgmMEulUBLGrtu2Y",
+         "types" : [ "restaurant", "food", "establishment" ],
+         "vicinity" : "Australia"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : -33.870943,
+               "lng" : 151.190311
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "30bee58f819b6c47bd24151802f25ecf11df8943",
+         "name" : "Bucks Party Cruise",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 600,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAA48AX5MsHIMiuipON_Lgh97hPiYDFkxx_vnaZQMOcvcQwYN92o33t5RwjRpOue5R47AjfMltntoz71hto40zqo7vFyxhDuuqhAChKGRQ5mdO5jv5CKWlzi182PICiOb37PiBtiFt7lSLe1SedoyrD-xIQD8xqSOaejWejYHCN4Ye2XBoUT3q2IXJQpMkmffJiBNftv8QSwF4",
+               "width" : 800
+            }
+         ],
+         "place_id" : "ChIJLfySpTOuEmsRsc_JfJtljdc",
+         "scope" : "GOOGLE",
+         "reference" : "CoQBdQAAANQSThnTekt-UokiTiX3oUFT6YDfdQJIG0ljlQnkLfWefcKmjxax0xmUpWjmpWdOsScl9zSyBNImmrTO9AE9DnWTdQ2hY7n-OOU4UgCfX7U0TE1Vf7jyODRISbK-u86TBJij0b2i7oUWq2bGr0cQSj8CV97U5q8SJR3AFDYi3ogqEhCMXjNLR1k8fiXTkG2BxGJmGhTqwE8C4grdjvJ0w5UsAVoOH7v8HQ",
+         "types" : [ "restaurant", "food", "establishment" ],
+         "vicinity" : "37 Bank St, Pyrmont"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : -33.867591,
+               "lng" : 151.201196
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/travel_agent-71.png",
+         "id" : "a97f9fb468bcd26b68a23072a55af82d4b325e0d",
+         "name" : "Australian Cruise Group",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 242,
+               "html_attributions" : [],
+               "photo_reference" : "CnRnAAAABjeoPQ7NUU3pDitV4Vs0BgP1FLhf_iCgStUZUr4ZuNqQnc5k43jbvjKC2hTGM8SrmdJYyOyxRO3D2yutoJwVC4Vp_dzckkjG35L6LfMm5sjrOr6uyOtr2PNCp1xQylx6vhdcpW8yZjBZCvVsjNajLBIQ-z4ttAMIc8EjEZV7LsoFgRoU6OrqxvKCnkJGb9F16W57iIV4LuM",
+               "width" : 200
+            }
+         ],
+         "place_id" : "ChIJrTLr-GyuEmsRBfy61i59si0",
+         "scope" : "GOOGLE",
+         "reference" : "CoQBeQAAAFvf12y8veSQMdIMmAXQmus1zqkgKQ-O2KEX0Kr47rIRTy6HNsyosVl0CjvEBulIu_cujrSOgICdcxNioFDHtAxXBhqeR-8xXtm52Bp0lVwnO3LzLFY3jeo8WrsyIwNE1kQlGuWA4xklpOknHJuRXSQJVheRlYijOHSgsBQ35mOcEhC5IpbpqCMe82yR136087wZGhSziPEbooYkHLn9e5njOTuBprcfVw",
+         "types" : [ "travel_agency", "restaurant", "food", "establishment" ],
+         "vicinity" : "32 The Promenade, King Street Wharf 5, Sydney"
+      }
+   ],
+   "status" : "OK"
+}
+
+
+Google Maps API: https://developers.google.com/maps/documentation/javascript/tutorial
+  Sample Javascript API Script to Build Map/Request: 
+    <!--<html>
+      <head>
+        <title>Simple Map</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+          /* Always set the map height explicitly to define the size of the div
+          * element that contains the map. */
+          #map {
+            height: 100%;
+          }
+          /* Optional: Makes the sample page fill the window. */
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="map"></div>
+        <script>
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 8
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+        async defer></script>
+      </body>
+    </html> -->
+  Sample JavaScript API Response:
+    View - Google Maps JavaScript API Sample Response.JPG
+
+
+Utilized https://www.postgresql.org/ for SQL queries and data types.
 Utilized https://www.w3schools.com/ for CSS examples and resources.
